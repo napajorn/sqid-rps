@@ -14,3 +14,12 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+#ignore other unneeded files
+database.yml
+doc/
+*~
+.project
+.DS_Stroe
+.idea
+.secret

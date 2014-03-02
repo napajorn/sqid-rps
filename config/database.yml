@@ -9,7 +9,6 @@ development:
   encoding: unicode
   database: d9fq2c9g6vssn6
   pool: 5
-  Port:  5432
   username: elqjfumqslhkbt
   password: BzV2NnGb8PWnMBQ6nRE7MYuD2f
 

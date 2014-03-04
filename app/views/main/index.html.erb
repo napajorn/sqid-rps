@@ -1,0 +1,17 @@
+<% flash.each do |key, value| %>
+    <div id='notice' class="<%= flash_class(key) %>">
+    	<button type="button" id='alertClose' class="close" data-dismiss="alert">×</button>
+        <strong><%= value %></strong>
+    </div>
+<% end %>
+
+<h1>Main#index</h1>
+<p>Welcome <%=session[:username]%></p>
+<p><% %></p>
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#notice').show().fadeOut(4000);
+	});
+</script>

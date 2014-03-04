@@ -1,11 +1,21 @@
 SqidRps::Application.routes.draw do
+  get "main/index"
   get "welcome/index"
+
+  post ':controller(/:action(/:id(.:format)))'
+  get ':controller(/:action(/:id(.:format)))'
+  get 'login' => 'welcome#authenticated'
+  post 'login' => 'welcome#authenticated'
+  get "main" => 'main#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
-
+  resource :main
+  resource :welcome
+  
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -1,22 +1,24 @@
-<!--<h1>SQID-RPS</h1>-->
+<% flash.each do |key, value| %>
+  <div id='notice' class="<%= flash_class(key) %>">
+    <button type="button" id='alertClose' class="close" data-dismiss="alert">×</button>
+    <strong><%= value %></strong>
+  </div>
+<% end %>
+<div class="center hero-unit">
+  <%= link_to image_tag("/assets/rps-logo-01.png", :alt=>"SQID-RPS", :style => "margin-top:-70px;margin-bottom:-50px;", :size=>"380x180"),
+  						'http://sqid-rps.herokuapp.com/' %>
+  <%= form_for(:user, :url => url_for(:action=>'authenticated'), :html => {:class=>"form-signin"}) do |f| %>
+    <%= f.text_field :first, :id=>'username', :class =>'input-block-level', :placeholder => "Username" %>
+    <%= f.password_field :password, :id=>'password', :class => 'input-block-level', :placeholder => "Password" %>
+    <%= f.submit "Sign in", :class => 'btn btn-large btn-primary'%>
+<% end %>
+</div>
 
 <script type="text/javascript">
 	$(document).ready(function(){
+		$('#notice').show().fadeOut(5000);
 		$('#signin').click(function(){
-			alert("This feature under consruction.");
+			//alert("This feature under construction.");
 		});
 	});
 </script>
-<div class="center hero-unit">
-  <%= link_to image_tag("/assets/rps-logo-01.png", alt: "Rails"),															  'http://rubyonrails.org/' %>
-  <h1>
-  	SQID-RPS
-  </h1>
-
-  <h2>
-    This is the home page for test.
-  </h2>
-
-  <%= link_to "Sign in", '#', id: "signin", class: "btn btn-large btn-primary" %>
-</div>
-

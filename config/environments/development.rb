@@ -5,8 +5,13 @@ SqidRps::Application.configure do
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
+  
+  #config.action_controller.session = { :key => "_sqid-rps_session", :secret => "40e5e0a9d3a5dfae7fdf98d40b18e4801ac7fb0b5d519cd7de6f703cf7f1464b569aa57a552f970bca1126d0dab33c4cbaa90973de935b1a31ea7ef51a6ba71f" }
 
+  
   # Do not eager load code on boot.
+  
+  
   config.eager_load = false
 
   # Show full error reports and disable caching.

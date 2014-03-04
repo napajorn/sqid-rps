@@ -6,6 +6,7 @@ SqidRps::Application.routes.draw do
   get ':controller(/:action(/:id(.:format)))'
   get 'login' => 'welcome#authenticated'
   post 'login' => 'welcome#authenticated'
+  match '/login', to: 'welcome#authenticated'
   get "main" => 'main#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

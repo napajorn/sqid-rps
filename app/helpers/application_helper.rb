@@ -3,7 +3,8 @@ module ApplicationHelper
  def flash_output(text, type)
  	content_tag :div, class: "flash-#{type}" do
     	text
-  	end
+  end
+  flash.discard
  end
  
  def flash_class(level)

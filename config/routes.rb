@@ -1,4 +1,5 @@
 SqidRps::Application.routes.draw do
+  get "admin/index"
   get "main/index"
   get "welcome/index"
 

@@ -1,13 +1,13 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
 	<div class="navbar-inner">
-    	<div class="container">
+    	<div style="padding-left: 30px;padding-right: 30px;">
           <% link_to image_tag("/assets/rps-logo.png", alt: "Rails", size:"70x80"), 'http://rubyonrails.org/' %>
           <%= link_to "SQID-RPS", '#', id: "logo" %>
           <nav>
             <ul class="nav pull-right">
-              <li><%= link_to "Home",    root_path %></li>
-              <li><%= link_to "Help",    '#' %></li>
-              <li><%= link_to "Sign in", '#' %></li>
+              <li><% link_to "Home",    root_path %></li>
+              <li><% link_to "Help",    '#' %></li>
+              <li><% link_to "Sign in", '#' %></li>
             </ul>
           </nav>
         </div>

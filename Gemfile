@@ -5,7 +5,10 @@ ruby '2.0.0'
 gem 'rails', '4.0.2'
 gem 'pg','0.17.1'
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
+gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',
+                              :git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
 
+#gem "less-rails", "~> 2.4.2"
 #gem 'devise'
 
 # Use sqlite3 as the database for Active Record

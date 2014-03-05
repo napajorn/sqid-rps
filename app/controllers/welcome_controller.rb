@@ -12,7 +12,7 @@ class WelcomeController < ApplicationController
   	unless @search_user.blank?
   		session[:username] = params[:user][:first]
   		flash[:success] = "Success!! #{@search_user.first} ".html_safe
-  		return redirect_to main_index_path
+  		return redirect_to admin_index_path
   	else
   		flash[:error] = "Username or password invalid!!".html_safe
   		return redirect_to :controller => 'welcome', :action => 'index'

@@ -1,0 +1,39 @@
+<% debug(@user) %>
+
+
+
+
+  <div class="form-search input-append">
+	  <input class="input-xlarge" id="appendedInputButton" placeholder="search..." type="text">
+	  <button class="btn" type="button"><i class="icon-search"></i> search</button>
+	  <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">add user</button>
+  </div>
+
+
+<table class="table table-condensed table-hover table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>NAME</th>
+      <th>EMAIL</th>
+      <th>ROLE</th>
+      <th>ACTION</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+  	<% @user.each do |u| %>
+  	<tr>
+      <td><%=u.id%></td>
+      <td><%=u.first%> <%=u.last%> <%= u.base.blank? ? "" : u.base %></td>
+      <td><%=u.email%></td>
+      <td><%=u.role%></td>
+      <td>
+  		<button class="btn btn-mini" type="button"><i class="icon-info-sign"></i> info.</button>
+  		<button class="btn btn-mini btn-primary" type="button"><i class="icon-edit"></i> edit</button>
+  		<button class="btn btn-mini btn-danger" type="button"><i class="icon-remove-sign"></i> remove</button>
+      </td>
+    </tr>
+  	<% end %>
+  </tbody>
+</table>

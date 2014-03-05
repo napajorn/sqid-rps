@@ -164,12 +164,14 @@
 		 $.ajax
          ({
          	type: 'GET',
-         	timeout: 5000,
+         	url: '/admin/show',
+         	dataType: 'html',
+         	crossDomain:true,
             beforeSend: function (){
             	$('#listUsers').html('<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>');
             },
             success: function (msg){
-            	$('#listUsers').load("/admin/show");
+            	$('#listUsers').load('/admin/show');
             },
             error: function (e){
             	alert("Cannot load user data");

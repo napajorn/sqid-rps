@@ -22,6 +22,7 @@
     padding: 10px;
     margin-top: 10px;
 	}
+	
 </style>
 
 <% flash.each do |key, value| %>
@@ -40,11 +41,8 @@
         <h4 class="modal-title" id="myModalLabel">Modal title</h4>
       </div>
       <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+
+      	
       </div>
     </div>
   </div>
@@ -55,63 +53,117 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
-          <a class="brand" href="#">SQID-RPS</a>
+	      <a class="brand" href="#">SQID-RPS</a>
           <div class="nav-collapse collapse">
  
-            <ul class="nav">
-              <li><a href="#">PROACTIVE</a></li>
-              <li><a href="#about">REACTIVE</a></li>
-              <li class="active dropdown">
-              	<a class="dropdown-toggle" data-toggle="dropdown" href="/admin">ADMIN
-        			<b class="caret"></b>
-        		</a>
-    			<ul class="dropdown-menu">
-      				<li><a href="/admin"><i class="icon-user"></i> Users</a></li>
-    			</ul>
+            <ul class="nav nav-pills">
+             <!--home menu -->
+             <li><a href="/main"><i class="icon-home icon-white"></i> HOME</a></li>
+             <!--end home menu -->
+             <!--reactive menu -->
+             <li class="dropdown" id="reactive-menu"> 
+	              <a id="reactive_menu" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+	              	<i class="icon-folder-open icon-white"></i> REACTIVE 
+	              	<b class="caret"></b>
+	              </a>
+	              <ul class="dropdown-menu">
+	      				<li><a href="#"><i class="icon-file"></i> AOG  - Aircraft on ground</a></li>
+	      				<li><a href="#"><i class="icon-file"></i> CF   - Customer feedback</a></li>
+	      				<li><a href="#"><i class="icon-file"></i> FO   - Flight occurence</a></li>
+	      				<li><a href="#"><i class="icon-file"></i> GO   - Ground occurence</a></li>
+	      				<li><a href="#"><i class="icon-file"></i> HESS - Health, Environment, Saftty & Security</a></li>
+	      				<li><a href="#"><i class="icon-file"></i> MRO occurence</a></li>
+	    			</ul>
   			  </li>
-  			  <li>
+  			  <!--end reactive menu -->
+				
+              <!--proactive menu -->
+              <li class="dropdown">
+	              <a id="proactive_menu" data-toggle="dropdown" class="dropdown-toggle" data-target="#">
+	              	<i class="icon-folder-open icon-white"></i> PROACTIVE 
+	              	<b class="caret"></b>
+	              </a>
+	              <ul class="dropdown-menu">
+	      				<li><a href="#"><i class="icon-file"></i> HI  - Hazard Identification</a></li>
+	      				<li><a href="#"><i class="icon-file"></i> NC  - Non-Conformance</a></li>
+	      				<li><a href="#"><i class="icon-file"></i> Request for document change / procedure change</a></li>
+	    			</ul>
+  			  </li>
+              <!--end proactive menu -->
+              
+              <li class="dropdown" id="other-menu"> 
+	              <a id="other_menu" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+	              	<i class="icon-folder-open icon-white"></i> OTHER 
+	              	<b class="caret"></b>
+	              </a>
+	              <ul class="dropdown-menu">
+	      				<li><a href="#"><i class="icon-file"></i> Anonymous Report</a></li>
+	      				<li><a href="#"><i class="icon-file"></i> Audit Report</a></li>
+	      				<li><a href="#"><i class="icon-file"></i> Confidencetial Report</a></li>
+	      				<li><a href="#"><i class="icon-file"></i> Corrective / Preventative Report</a></li>
+	      				<li><a href="#"><i class="icon-file"></i> Indexed Document</a></li>
+	      				<li><a href="#"><i class="icon-file"></i> Investigation</a></li>
+	      				<li><a href="#"><i class="icon-file"></i> Meeting Record</a></li>
+	      				<li><a href="#"><i class="icon-file"></i> Weekly SITREP</a></li>
+	    			</ul>
+  			  </li>
+              <!--admin menu -->
+              <li class="dropdown">
+	              	<a id="admin_menu" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+	              		<i class="icon-wrench icon-white"></i> ADMIN 
+	              		<b class="caret"></b>
+	              	</a>
+	    			<ul class="dropdown-menu">
+	      				<li><a href="/admin"><i class="icon-user"></i> Users</a></li>
+	    			</ul>
+  			  </li>
+  			  <!--end admin menu -->
+  			  <li class="pull-right">
 	  			  <!--<p class="navbar-text pull-right"></p>-->
 	  			  <p class="navbar-text pull-right">
-	              <i class="icon-user icon-white"></i> | Logged in as <a href="#" class="navbar-link"><%=session[:username]%></a>
+	              	<i class="icon-user icon-white"></i> | Logged in as 
+	              	<a href="#" class="navbar-link"><%=session[:username]%></a>
 	          	  </p>
 	          </li>
             </ul>
           </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
+        </div><!--/.nav-container-fluid -->
+      </div><!--/.navbar-inner -->
+    </div><!--/.navbar navbar-inverse navbar-fixed-top -->
 
     <div class="container-fluid">
       <div class="row-fluid">
         
         <div class="span12">
-		  <!-- /div load controller: admin, action: show -->
-          <div id='listUsers'></div>
-		   <!--/row span 12 -->
+        	<!--/row span 12 -->
 		   <div class="row-fluid">
-		    <div class="span12 sp4">
-		      <h2>Heading</h2>
-		      <p>Donec id elit non mi porta gravida at eget metus.</p>
-		      <p><a class="btn" href="#">View details &raquo;</a></p>
+		    <div class="span12" style="background-color: #FAFAFA;margin-bottom: 10px;">
+		      <center><h5>ADMIN PAGE</h5></center>
 		    </div><!--/span-->
           </div><!--/row-->
           <!-- end row span 12 -->
           
-          <!--/row span 12 [9,3]-->
+		  <!-- /div load controller: admin, action: show -->
+          <div id='listUsers'></div>
+          
+		  <div id='newUsers'></div>
+		  
+          
+          <!--/row span 12 [9,3]
 		   <div class="row-fluid">
 		    <div class="span9 sp4">
 		      <h2>Heading</h2>
 		      <p>Donec id elit non mi porta gravida at eget metus.</p>
 		      <p><a class="btn" href="#">View details &raquo;</a></p>
-		    </div><!--/span-->
+		    </div><!--/span-
 		    <div class="span3 sp4">
 		      <p>Action</p>
 		      <p><a class="btn" href="#">View details &raquo;</a></p>
-		    </div><!--/span-->
+		    </div><!--/span
           </div><!--/row-->
-          <!-- end row span 12 [9,3] -->
+          <!-- end row span 12 [9,3]
           
-          <!--/row span 12 [10,2]-->
+          <!--/row span 12 [10,2]
 		   <div class="row-fluid">
 		    <div class="span10 sp4">
 		      <h2>Heading</h2>
@@ -120,7 +172,7 @@
   				<input type="text" class="" id="appendedInput">
 			  </div>
 		      <p><a class="btn" href="#">View details &raquo;</a></p>
-		    </div><!--/span-->
+		    </div><!--/span
 		    <div class="span2 sp4">
 		      <p><button class="btn btn-primary" type="button">default</button></p>
 		      <p><button class="btn btn-info" type="button">info.</button></p>
@@ -128,7 +180,7 @@
 		      <p><button class="btn btn-warning" type="button">warning</button></p>
 		      <p><button class="btn btn-danger" type="button">danger</button></p>
 		      <p><button class="btn btn-inverse" type="button">inverse</button></p>
-		      <!--/button group -->
+		      <!--/button group
 		      <div class="btn-group">
 			  	<a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i> User</a>
 				<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
@@ -139,9 +191,9 @@
 			      <li class="divider"></li>
 			      <li><a href="#"><i class="i"></i> Make admin</a></li>
 			    </ul>
-			  </div><!--button group-->
-		    </div><!--/span-->
-          </div><!--/row-->
+			  </div><!--button group -->
+		    </div><!--/span -->
+      	  </div><!--/row -->
           <!-- end row span 12 [9,3] -->
           
         </div><!--/span-->
@@ -150,7 +202,15 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('#notice').show().fadeOut(4000);
+		$('#notice').show().fadeOut(10000);
+		$('.navbar .dropdown').hover(function() {
+	        $(this).find('.dropdown-menu').first().stop(true, true).delay(250).slideDown();
+	        
+	    }, function() {
+	        $(this).find('.dropdown-menu').first().stop(true, true).delay(100).slideUp();
+	        
+	    });
+	    
 		$('#appendedInput').datepicker({
 		 	format: "dd/mm/yyyy",
     		todayBtn: "linked",
@@ -158,8 +218,6 @@
     		autoclose: true,
     		todayHighlight: true
 		 });
-		 $('.dropdown-toggle').dropdown();
-		 
 		 
 		 $.ajax
          ({
@@ -168,13 +226,68 @@
             beforeSend: function (){
             	$('#listUsers').html('<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>');
             },
-            success: function (msg){
+            success: function (){
             	$('#listUsers').load("/admin/show");
+            	
+            },
+            error: function (){
+            	alert("Cannot load user data");
+            	
+            }
+            
+         });
+         
+	});
+	
+	function removeUser(id){
+		if (confirm("Are you sure?")) {
+			$.ajax
+		     ({
+		     	type: 'POST',
+		     	url: '/admin/destroy',
+		     	data: {id: id},
+		        beforeSend: function (){
+		        },
+		        success: function (){
+		        	window.location = "/admin/index";
+		        	
+		        	//alert("User was successfully deleted.");
+		        },
+		        error: function (){
+		        	alert("Delete operate was not successful!!");
+		        	
+		        }
+		     });
+		}
+    	return false;
+	}
+	
+	function createNewUser(first,last){
+		$.ajax
+         ({
+         	type: 'POST',
+         	url: '/admin/new',
+         	data: {first: $('#first').val(), last: $('#last').val()},
+         	timeout: 5000,
+            beforeSend: function (){
+            },
+            success: function (data){
+            	window.location = "/admin/index";
+            	
+            	//$('#listUsers').load("/admin/show");
+            	//alert("User was successfully created.");
+            	//$('#myModal').modal('hide');
             },
             error: function (e){
             	alert("Cannot load user data");
+            	
             }
+            
          });
-		
-	});
+     }
+     function doSomething(id){
+      	alert(id);
+     }
+	
+	
 </script>

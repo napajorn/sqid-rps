@@ -1,0 +1,49 @@
+<!--/row span 12 -->
+<div class="row-fluid">
+	<div class="span12 sp4" style="background-color: #FAFAFA">
+  		<h2>FORM CREATE USER</h2>
+
+  		<table class="table table-bordered">
+  			<tr>
+  				<td>
+  					<label>FIRSTNAME</label>
+  					<input type="text" id="first" class="input-block-level input-large" placeholder="firstname">
+  				</td>
+  				<td>
+  					<label>LASTNAME</label>
+  					<input type="text" id="last" class="input-block-level input-large" placeholder="lastname">
+  				</td>
+  				<td>
+  					<label>EMAIL</label> 
+  					<input type="text" id="email"  class="input-block-level input-large" placeholder="abc@gmail.com">
+  				</td>
+  			</tr>
+  			<tr>
+  				<td colspan='3'>
+  					<button id='save_user' class="btn btn-primary" type="button">save</button>
+  				</td>	
+  			</tr>
+  		</table>
+
+	</div><!--/span-->
+</div><!--/row-->
+<!-- end row span 12 -->
+<script type="text/javascript">
+	$('#save_user').click(function(e) {
+		$.ajax
+         ({
+         	type: 'POST',
+         	url: '/admin/new',
+         	data: {first: $('#first').val(), last: $('#last').val()},
+         	timeout: 5000,
+            beforeSend: function (){
+            },
+            success: function (data){
+            	window.location = "/admin/index";
+            },
+            error: function (e){
+            	alert("Cannot load user data");
+            }
+         });
+	});
+</script>

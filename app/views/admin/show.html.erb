@@ -12,6 +12,7 @@
     <tr>
       <th>#</th>
       <th>NAME</th>
+      <th>PASSWORD</th>
       <th>EMAIL</th>
       <th>ROLE</th>
       <th>ACTION</th>
@@ -23,6 +24,7 @@
   	<tr>
       <td><%=u.id%></td>
       <td><%=u.first%> <%=u.last%> <%= u.base.blank? ? "" : u.base %></td>
+      <td><%=u.hashed_password%></td>
       <td><%=u.email%></td>
       <td><%=u.role%></td>
       <td>
@@ -37,7 +39,6 @@
 <script type="text/javascript">
 
 	$('#add_user').click(function(){
-
 		$.ajax
          ({
          	type: 'GET',

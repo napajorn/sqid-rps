@@ -23,11 +23,11 @@ class AdminController < ApplicationController
     if params[:first].present? && params[:last].present?
       @firstname = params[:first]
       @lastname = params[:last]
-      
+      @password = params[:password]
       @user = User.new(
         :first => params[:first], 
         :last => params[:last],
-        :hashed_password => 'admin'
+        :hashed_password => Digest::SHA1.hexdigest(params[:password])
       )
   
       if @user.save
@@ -36,12 +36,13 @@ class AdminController < ApplicationController
         flash[:error] = @user.errors.full_messages
       end
     end
-    
+    flash.discard
     render :layout => false
   end
   
   def destroy
     User.destroy(params[:id])
+    flash[:notice] = 'User deleted successfully.'
     #@user.destroy
   end
   

@@ -1,5 +1,5 @@
 <!--/row span 12 -->
-<div class="row-fluid">
+<div id='form_create' class="row-fluid">
 	<div class="span12 sp4" style="background-color: #FAFAFA">
   		<h2>FORM CREATE USER</h2>
 
@@ -14,14 +14,15 @@
   					<input type="text" id="last" class="input-block-level input-large" placeholder="lastname">
   				</td>
   				<td>
-  					<label>EMAIL</label> 
-  					<input type="text" id="email"  class="input-block-level input-large" placeholder="abc@gmail.com">
+  					<label>PASSWORD</label> 
+  					<input type="password" id="password"  class="input-block-level input-large" placeholder="at least 4 characters...">
   				</td>
   			</tr>
   			<tr>
   				<td colspan='3'>
   					<button id='save_user' class="btn btn-primary" type="button">save</button>
-  				</td>	
+  					<button id="close" class="btn btn-primary" type="button">close</button>
+  				</td>
   			</tr>
   		</table>
 
@@ -34,16 +35,27 @@
          ({
          	type: 'POST',
          	url: '/admin/new',
-         	data: {first: $('#first').val(), last: $('#last').val()},
+         	data: {first: $('#first').val(), last: $('#last').val(), password: $('#password').val()},
          	timeout: 5000,
             beforeSend: function (){
+            	$('#listUsers').html('<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>');
             },
             success: function (data){
-            	window.location = "/admin/index";
+            	//window.location = "/admin/index";
+            	$('#form_create').hide();
+            	$('#listUsers').load("/admin/show");
+            	$('#modalLabel').html('CRETAED USER');
+				$('#modalContent').html('Completed.');
+				$("#myModal").modal('show');
+            	
             },
             error: function (e){
             	alert("Cannot load user data");
+            	
             }
          });
+	});
+	$('#close').click(function(){
+		$('#form_create').hide();
 	});
 </script>

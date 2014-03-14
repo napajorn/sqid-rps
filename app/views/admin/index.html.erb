@@ -253,12 +253,10 @@
 		        },
 		        success: function (){
 		        	window.location = "/admin/index";
-
 		        	//alert("User was successfully deleted.");
 		        },
 		        error: function (){
-		        	alert("Delete operate was not successful!!");
-		        	
+		        	alert("Delete operate was not successful!!");	
 		        }
 		     });
 		}
@@ -276,14 +274,12 @@
             },
             success: function (data){
             	window.location = "/admin/index";
-            	
             	//$('#listUsers').load("/admin/show");
             	//alert("User was successfully created.");
             	//$('#myModal').modal('hide');
             },
             error: function (e){
             	alert("Cannot load user data");
-            	
             }
             
          });

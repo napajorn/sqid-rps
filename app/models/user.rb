@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 	attr_accessor :password
 	#VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
 	#default_scope lamda { order('users.first') }
-	validates_uniqueness_of :email
+	#validates_uniqueness_of :email
 	#validates_length_of :email, :within => 5..50
 	#validates_format_of :email, :multipleline => true, :with => VALID_EMAIL_REGEX
 	validates_confirmation_of :password

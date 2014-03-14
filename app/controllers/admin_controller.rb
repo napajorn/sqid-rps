@@ -36,7 +36,7 @@ class AdminController < ApplicationController
         flash[:error] = @user.errors.full_messages
       end
     end
-    flash.discard
+    
     render :layout => false
   end
   

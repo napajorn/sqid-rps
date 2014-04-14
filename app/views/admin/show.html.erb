@@ -1,8 +1,8 @@
 <% debug(@user) %>
 
 <div class="form-search input-append">
-  <input class="input-xlarge" id="appendedInputButton" placeholder="search..." type="text">
-  <button class="btn" type="button"><i class="icon-search"></i> search</button>
+  <input class="input-xlarge" id="search-user" placeholder="firstname or lastname..." type="text" value="<%=@search unless @search.blank?%>">
+  <button id='search_user' class="btn" type="button"><i class="icon-search"></i> search</button>
   <button id="add_user" class="btn btn-primary btn-lg" type="button">add user</button>
 </div>
 
@@ -12,9 +12,12 @@
     <tr>
       <th>#</th>
       <th>NAME</th>
-      <th>PASSWORD</th>
       <th>EMAIL</th>
+      <th>BUSINESS UNIT</th>
+      <th>POSITION</th>
       <th>ROLE</th>
+      <th>PILOT</th>
+      <th>NOTE</th>
       <th>ACTION</th>
       
     </tr>
@@ -23,13 +26,16 @@
   	<% @user.each do |u| %>
   	<tr>
       <td><%=u.id%></td>
-      <td><%=u.first%> <%=u.last%> <%= u.base.blank? ? "" : u.base %></td>
-      <td><%=u.hashed_password%></td>
+      <td><%=u.first%> <%=u.last%></td>
       <td><%=u.email%></td>
+      <td><%=(u.business_unit.blank? ? u.business_unit : "#{u.business_unit}") %> <%=(u.base.blank? ? u.base : "|#{u.base}")%></td>
+      <td><%=u.position%></td>
       <td><%=u.role%></td>
+      <td><%=u.is_pilot%></td>
+      <td><%=u.notes%></td>
       <td>
-  		<button id='info' onclick="doSomething('<%=u.id%>');" class="btn btn-mini" ><i class="icon-info-sign"></i> info.</button>
-  		<button id='edit' onclick="doSomething('<%=u.id%>');" class="btn btn-mini btn-primary" type="button"><i class="icon-edit"></i> edit</button>
+  		<!--<button id='info' onclick="doSomething('<%=u.id%>');" class="btn btn-mini" ><i class="icon-info-sign"></i> info.</button>-->
+  		<button id='edit' onclick="updateUser('<%=u.id%>');" class="btn btn-mini btn-primary" type="button"><i class="icon-edit"></i> edit</button>
   		<button id='remove' onclick="removeUser('<%=u.id%>');" class="btn btn-mini btn-danger" type="button"><i class="icon-remove-sign"></i> remove</button>
       </td>
     </tr>
@@ -39,6 +45,7 @@
 <script type="text/javascript">
 
 	$('#add_user').click(function(){
+		$('#form_update').hide();
 		$.ajax
          ({
          	type: 'GET',
@@ -54,6 +61,53 @@
             }
             
          });
+	});
+	
+	$('#search_user').click(function(){
+		var search1 =  $('#search-user').val();
+    		$.ajax
+	         ({
+	         	type: 'POST',
+	         	timeout: 5000,
+	            beforeSend: function (){
+	            	$('#listUsers').html('<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>');
+	            },
+	            success: function (){
+	            	$('#listUsers').load("/admin/show/?search=" + search1);
+	            	
+	            },
+	            error: function (){
+	            	alert("Cannot load user data");
+	            	
+	            }
+	            
+	         });
+	
+	});
+	
+	$('#search-user').keypress(function(e) {
+		var keycode = (e.keyCode ? e.keyCode : e.which);
+		var search =  $('#search-user').val();
+  		if (keycode == 13) {
+    		$.ajax
+	         ({
+	         	type: 'POST',
+	         	timeout: 5000,
+	            beforeSend: function (){
+	            	$('#listUsers').html('<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>');
+	            },
+	            success: function (){
+	            	$('#listUsers').load("/admin/show/?search=" + search);
+	            	
+	            },
+	            error: function (){
+	            	alert("Cannot load user data");
+	            	
+	            }
+	            
+	         });
+  		}
+
 	});
 
 </script>

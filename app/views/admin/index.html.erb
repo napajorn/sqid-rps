@@ -54,7 +54,7 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
-	      <a class="brand" href="#">SQID-RPS</a>
+	      <a class="brand" href="#">RPS-REPORT</a>
           <div class="nav-collapse collapse">
  
             <ul class="nav nav-pills">
@@ -70,7 +70,7 @@
 	              <ul class="dropdown-menu">
 	      				<li><a href="#"><i class="icon-file"></i> AOG  - Aircraft on ground</a></li>
 	      				<li><a href="#"><i class="icon-file"></i> CF   - Customer feedback</a></li>
-	      				<li><a href="#"><i class="icon-file"></i> FO   - Flight occurence</a></li>
+	      				<li><a href="/report/flight_occurence"><i class="icon-file"></i> FO   - Flight occurence</a></li>
 	      				<li><a href="#"><i class="icon-file"></i> GO   - Ground occurence</a></li>
 	      				<li><a href="#"><i class="icon-file"></i> HESS - Health, Environment, Saftty & Security</a></li>
 	      				<li><a href="#"><i class="icon-file"></i> MRO occurence</a></li>
@@ -149,6 +149,7 @@
           
 		  <div id='newUsers'></div>
 		  
+		  <div id='updateUsers'></div>
           
           <!--/row span 12 [9,3]
 		   <div class="row-fluid">
@@ -249,6 +250,7 @@
 		     	data: {id: id},
 		        beforeSend: function (){
 		        	$('#form_create').hide();
+		        	$('#form_update').hide();
 		        	$('#listUsers').html('<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>');
 		        },
 		        success: function (){
@@ -286,6 +288,29 @@
      }
      function doSomething(id){
       	alert(id);
+     }
+     
+     function updateUser(id) {
+     	$.ajax
+		     ({
+		     	type: 'POST',
+		     	url: '/admin/update',
+		     	data: {id: id},
+		        beforeSend: function (){
+		        	$('#form_create').hide();
+		        	$('#updateUsers').html('<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>');
+			    },
+		        success: function (){
+		        	
+		        	$('#updateUsers').load('/admin/update/?id='+id);
+		        
+		        	//alert("User was successfully deleted.");
+		        },
+		        error: function (){
+		        	alert("Cannot load form update!!");	
+		        }
+		     });
+		return false;
      }
 	
 	

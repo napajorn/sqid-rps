@@ -1,50 +1,52 @@
 <!--/row span 12 -->
-<div id='form_create' class="row-fluid">
+<div id='form_update' class="row-fluid">
 	<div class="span12 sp4" style="background-color: #FAFAFA">
-  		<h2>CREATE USER</h2>
-
+  		<h2>UPDATE USER</h2>
+		<%debug(@user)%>
+		
   		<table class="table table-bordered">
+  			<tr><td colspan='3'>ID:<input type="text" id="id" class="input-block-level input-large" disabled="true" value="<%=@user.id%>"></td></tr>
   			<tr>
   				<td>
   					<label>FIRSTNAME*</label>
-  					<input type="text" id="first" class="input-block-level input-large" placeholder="firstname">
+  					<input type="text" id="first" class="input-block-level input-large" placeholder="firstname" value="<%=@user.first%>">
   				</td>
   				<td>
   					<label>LASTNAME*</label>
-  					<input type="text" id="last" class="input-block-level input-large" placeholder="lastname">
+  					<input type="text" id="last" class="input-block-level input-large" placeholder="lastname" value="<%=@user.last%>">
   				</td>
   				<td>
   					<label>PASSWORD*</label> 
-  					<input type="password" id="password"  class="input-block-level input-large" placeholder="at least 4 characters...">
+  					<input type="password" id="password" disabled class="input-block-level input-large" placeholder="at least 4 characters..." value=<%=@user.hashed_password%>>
   				</td>
   			</tr>
   			<tr>
   				<td>
   					<label>EMAIL*</label>
-  					<input type="text" id="email" class="input-block-level input-large" placeholder="abc@hotmail.com">
+  					<input type="text" id="email" class="input-block-level input-large" placeholder="abc@hotmail.com" value="<%=@user.email%>">
   				</td>
   				<td>
   					<label>DIVISION</label>
-  					<input type="text" id="division" class="input-block-level input-large" placeholder="...">
+  					<input type="text" id="division" class="input-block-level input-large" placeholder="..." value="<%=@user.division%>">
   				</td>
   				<td>
   					<label>BUSINESS UNIT</label> 
-  					<input type="text" id="business_unit"  class="input-block-level input-large" placeholder="...">
+  					<input type="text" id="business_unit"  class="input-block-level input-large" placeholder="..." value="<%=@user.business_unit%>">
   				</td>
   			</tr>
   			<tr>
   				<td>
   					<label>BASE</label>
-  					<input type="text" id="base" class="input-block-level input-large" placeholder="...">
+  					<input type="text" id="base" class="input-block-level input-large" placeholder="..." value="<%=@user.base%>">
   				</td>
   				<td>
   					<label>ROLE</label>
-  					<input type="text" id="role" class="input-block-level input-large" placeholder="role">
+  					<input type="text" id="role" class="input-block-level input-large" placeholder="role" value="<%=@user.role%>">
   				</td>
   				<td>
   					<label>PILOT</label> 
+  					
   					<select id="is_pilot"  class="input-block-level input-large">
-  						<option value='none' disabled selected>select option</option>
   						<option value='yes'>Yes</option>
   						<option value='no'>No</option>
   					</select>
@@ -53,28 +55,29 @@
   			<tr>
   				<td colspan="3">
   					<label>NOTE</label>
-  					<textarea id="note" class="input-block-level input-large"></textarea>
+  					<textarea id="note" class="input-block-level input-large"><%=@user.notes%></textarea>
   				</td>
   			</tr>
   			<tr>
   				<td colspan='3'>
-  					<button id='save_user' class="btn btn-primary" type="button">save</button>
-  					<button id="close" class="btn btn-primary" type="button">close</button>
+  					<button id='update_user' class="btn btn-primary" type="button">update</button>
+  					<button id="close_update" class="btn btn-primary" type="button">close</button>
   				</td>
   			</tr>
   		</table>
-
+		
 	</div><!--/span-->
 </div><!--/row-->
 <!-- end row span 12 -->
 <script type="text/javascript">
-	$('#save_user').click(function(e) {
-	 if ($('#email').val() != '' && $('#first').val() != '' && $('#last').val() && $('#password').val() != '') { 
+	$('#update_user').click(function(e) {
+	 if ($('#email').val() != '' && $('#first').val() != '' && $('#last').val()) { 
 		$.ajax
          ({
          	type: 'POST',
-         	url: '/admin/new',
+         	url: '/admin/update',
          	data: {
+         		id: $('#id').val(),
          		first: $('#first').val(), 
          		last: $('#last').val(), 
          		password: $('#password').val(), 
@@ -92,9 +95,9 @@
             },
             success: function (data){
             	//window.location = "/admin/index";
-            	$('#form_create').hide();
+            	$('#form_update').hide();
             	$('#listUsers').load("/admin/show");
-            	$('#modalLabel').html('CRETAED USER');
+            	$('#modalLabel').html('UPDATED USER');
 				$('#modalContent').html('Completed.');
 				$("#myModal").modal('show');	
             },
@@ -107,7 +110,7 @@
       	alert('Firstname, Lastname, Password and Email cannot be blank!');
       }
 	});
-	$('#close').click(function(){
-		$('#form_create').hide();
+	$('#close_update').click(function(){
+		$('#form_update').hide();
 	});
 </script>

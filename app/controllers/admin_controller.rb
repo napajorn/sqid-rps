@@ -11,7 +11,7 @@ class AdminController < ApplicationController
   def show
     if params[:search].present?
        @search = params[:search]
-       @user = User.all(:conditions => ["first LIKE ? or last LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%"])
+       @user = User.all(:conditions => ["lower(first) LIKE ? or lower(last) LIKE ?", "%#{params[:search].downcase}%", "%#{params[:search].downcase}%"])
     else
        @user = User.all
     end

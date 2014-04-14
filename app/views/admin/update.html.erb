@@ -45,10 +45,10 @@
   				</td>
   				<td>
   					<label>PILOT</label> 
-  					
   					<select id="is_pilot"  class="input-block-level input-large">
-  						<option value='yes'>Yes</option>
-  						<option value='no'>No</option>
+  						<option value='none' disabled selected>select option</option>
+  						<option value='yes' <%=(@user.is_pilot == 'yes' ? 'selected' : '')%> >Yes</option>
+  						<option value='no' <%=(@user.is_pilot == 'no' ? 'selected' : '')%>  >No</option>
   					</select>
   				</td>
   			</tr>

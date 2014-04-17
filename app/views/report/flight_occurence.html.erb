@@ -1,4 +1,3 @@
-<script src="http://code.highcharts.com/highcharts.js"></script>
 
 <div class="container-fluid">
   <div class="row-fluid"> 
@@ -33,7 +32,14 @@
 	    </div><!--/span -->
       </div><!--/row-->
       <!-- end row span 12 [9,3] -->
+      <div class="row-fluid">
+	    <div class="span12" style="background-color: #FAFAFA;margin-bottom: 10px;">
+	      <br/><button id='createFO' class="btn btn-primary" type="button">create report</button>
+	    </div><!--/span-->
+      </div><!--/row-->
+      <!-- end row span 12 -->
       
+      <div id='listFlightOccurence'>
       <% 2.times do %>
       <div class="row-fluid">
 	    <div class="span12" style="background-color: #FAFAFA;margin-bottom: 10px;">
@@ -59,286 +65,326 @@
       </div><!--/row-->
       <%end%>
       
+      <div class="row-fluid">
+	    <div class="span12" style="background-color: #FAFAFA;margin-bottom: 10px;">
+	      <div class="media">
+    		<img class="pull-left img-rounded" src="../assets/rps-logo-01.png" alt="..." width="64" height="64">
+	  		<div class="media-body">
+	   	 		<h4 class="media-heading">Media heading</h4>
+	    		TEST
+	  		</div>
+		  </div>
+		 </div>
+	 </div>
+
+     </div> <!-- end div listFlightOccurence -->
+     
+     <!-- create flight occurence -->
+     <div id='createFOreport'></div>
+     
+     
+     
+     
+     
     </div><!--/span-->
   </div><!--/row-->
 </div><!--/.fluid-container-->
 <script type="text/javascript">
 	$(function () {
-  // set the theme
-  Highcharts.setOptions({
-    colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
-    chart: {
-      backgroundColor: {
-        linearGradient: [0, 0, 500, 500],
-        stops: [
-          [0, 'rgb(255, 255, 255)'],
-          [1, 'rgb(240, 240, 255)']
-        ]
-      },
-      borderWidth: 2,
-      plotBackgroundColor: 'rgba(255, 255, 255, .9)',
-      plotShadow: true,
-      plotBorderWidth: 1
-    },
-    title: {
-      style: {
-        color: '#000',
-        font: 'bold 16px "Trebuchet MS", Verdana, sans-serif'
-      }
-    },
-    subtitle: {
-      style: {
-        color: '#666666',
-        font: 'bold 12px "Trebuchet MS", Verdana, sans-serif'
-      }
-    },
-    xAxis: {
-      gridLineWidth: 1,
-      lineColor: '#000',
-      tickColor: '#000',
-      labels: {
-        style: {
-          color: '#000',
-          font: '11px Trebuchet MS, Verdana, sans-serif'
-        }
-      },
-      title: {
-        style: {
-          color: '#333',
-          fontWeight: 'bold',
-          fontSize: '12px',
-          fontFamily: 'Trebuchet MS, Verdana, sans-serif'
+	  // set the theme
+	  Highcharts.setOptions({
+	    colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
+	    chart: {
+	      backgroundColor: {
+	        linearGradient: [0, 0, 500, 500],
+	        stops: [
+	          [0, 'rgb(255, 255, 255)'],
+	          [1, 'rgb(240, 240, 255)']
+	        ]
+	      },
+	      borderWidth: 2,
+	      plotBackgroundColor: 'rgba(255, 255, 255, .9)',
+	      plotShadow: true,
+	      plotBorderWidth: 1
+	    },
+	    title: {
+	      style: {
+	        color: '#000',
+	        font: 'bold 16px "Trebuchet MS", Verdana, sans-serif'
+	      }
+	    },
+	    subtitle: {
+	      style: {
+	        color: '#666666',
+	        font: 'bold 12px "Trebuchet MS", Verdana, sans-serif'
+	      }
+	    },
+	    xAxis: {
+	      gridLineWidth: 1,
+	      lineColor: '#000',
+	      tickColor: '#000',
+	      labels: {
+	        style: {
+	          color: '#000',
+	          font: '11px Trebuchet MS, Verdana, sans-serif'
+	        }
+	      },
+	      title: {
+	        style: {
+	          color: '#333',
+	          fontWeight: 'bold',
+	          fontSize: '12px',
+	          fontFamily: 'Trebuchet MS, Verdana, sans-serif'
+	
+	        }
+	      }
+	    },
+	    yAxis: {
+	      alternateGridColor: null,
+	      minorTickInterval: 'auto',
+	      lineColor: '#000',
+	      lineWidth: 1,
+	      tickWidth: 1,
+	      tickColor: '#000',
+	      labels: {
+	        style: {
+	          color: '#000',
+	          font: '11px Trebuchet MS, Verdana, sans-serif'
+	        }
+	      },
+	      title: {
+	        style: {
+	          color: '#333',
+	          fontWeight: 'bold',
+	          fontSize: '12px',
+	          fontFamily: 'Trebuchet MS, Verdana, sans-serif'
+	        }
+	      }
+	    },
+	    legend: {
+	      itemStyle: {
+	        font: '9pt Trebuchet MS, Verdana, sans-serif',
+	        color: 'black'
+	
+	      },
+	      itemHoverStyle: {
+	        color: '#039'
+	      },
+	      itemHiddenStyle: {
+	        color: 'gray'
+	      }
+	    },
+	    credits: {
+	      style: {
+	        right: '10px'
+	      }
+	    },
+	    labels: {
+	      style: {
+	        color: '#99b'
+	      }
+	    }
+	  });
+	
+	  // default options
+	  var options = {
+	    chart: {
+	      zoomType: 'xy'
+	    },
+	
+	    xAxis: {
+	      type: 'datetime'
+	    }
+	  };
+	
+	  // create the chart 1
+	  var chart1Options = {
+	    chart: {
+	      renderTo: 'container1'
+	    },
+	    title: {
+	                text: ''
+	    },
+	    credits: {
+	                enabled: false
+	    },
+	    xAxis: {
+	                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+	                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+	            },
+	            yAxis: {
+	                title: {
+	                    text: 'Temperature (°C)'
+	                },
+	                plotLines: [{
+	                    value: 0,
+	                    width: 1,
+	                    color: '#808080'
+	                }]
+	            },
+	            tooltip: {
+	                valueSuffix: '°C'
+	            },
+	            legend: {
+	                layout: 'vertical',
+	                align: 'right',
+	                verticalAlign: 'middle',
+	                borderWidth: 0
+	            },
+	            series: [{
+	                name: 'Tokyo',
+	                data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+	            }, {
+	                name: 'New York',
+	                data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+	            }, {
+	                name: 'Berlin',
+	                data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
+	            }, {
+	                name: 'London',
+	                data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+	            }]
+	  };
+	  chart1Options = jQuery.extend(true, {}, options, chart1Options);
+	  var chart1 = new Highcharts.Chart(chart1Options);
+	  //end the chart 1
+	  
+	  // create the chart 2
+	  var chart2Options = {
+	    chart: {
+	      renderTo: 'container2',
+	      type: 'column'
+	    },
+	    title: {
+	                text: ''
+	    },
+		credits: {
+	                enabled: false
+	    },
+	    xAxis: {
+	                categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania'],
+	                title: {
+	                    text: null
+	                }
+	            },
+	            yAxis: {
+	                min: 0,
+	                title: {
+	                    text: 'Population (millions)',
+	                    align: 'high'
+	                },
+	                labels: {
+	                    overflow: 'justify'
+	                }
+	    },
+	   tooltip: {
+	                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+	                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+	                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+	                footerFormat: '</table>',
+	                shared: true,
+	                useHTML: true
+	            },
+	            plotOptions: {
+	                column: {
+	                    pointPadding: 0.2,
+	                    borderWidth: 0
+	                }
+	    },
+	    series: [{
+	                name: 'Year 1800',
+	                data: [107, 31, 635, 203, 2]
+	            }, {
+	                name: 'Year 1900',
+	                data: [133, 156, 947, 408, 6]
+	            }, {
+	                name: 'Year 2008',
+	                data: [973, 914, 4054, 732, 34]
+	            }
+	    ]
+	  };
+	  
+	  chart2Options = jQuery.extend(true, {}, options, chart2Options);
+	  var chart2 = new Highcharts.Chart(chart2Options);
+	  //end the chart 2
+	  
+	  //// create the chart 3
+	  var chart3Options = {
+	    chart: {
+	      renderTo: 'container3',
+	      type: 'area'
+	    },
+	    title: {
+	                text: ''
+	    },
+		credits: {
+	                enabled: false
+	    },
+	    xAxis: {
+	                categories: ['1750', '1800', '1850', '1900', '1950', '1999', '2050'],
+	                tickmarkPlacement: 'on',
+	                title: {
+	                    enabled: false
+	                }
+	            },
+	            yAxis: {
+	                title: {
+	                    text: 'Percent'
+	                }
+	            },
+	            tooltip: {
+	                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.percentage:.1f}%</b> ({point.y:,.0f} millions)<br/>',
+	                shared: true
+	            },
+	            plotOptions: {
+	                area: {
+	                    stacking: 'percent',
+	                    lineColor: '#ffffff',
+	                    lineWidth: 1,
+	                    marker: {
+	                        lineWidth: 1,
+	                        lineColor: '#ffffff'
+	                    }
+	                }
+	            },
+	            series: [{
+	                name: 'Asia',
+	                data: [502, 635, 809, 947, 1402, 3634, 5268]
+	            }, {
+	                name: 'Africa',
+	                data: [106, 107, 111, 133, 221, 767, 1766]
+	            }, {
+	                name: 'Europe',
+	                data: [163, 203, 276, 408, 547, 729, 628]
+	            }, {
+	                name: 'America',
+	                data: [18, 31, 54, 156, 339, 818, 1201]
+	            }, {
+	                name: 'Oceania',
+	                data: [2, 2, 2, 6, 13, 30, 46]
+	            }]
+	  };
+	  chart3Options = jQuery.extend(true, {}, options, chart3Options);
+	  var chart3 = new Highcharts.Chart(chart3Options);
+	  //end the chart 3
+	  
+	  $('#createFO').click(function(){
+		  	$.ajax({
+				type: 'POST',
+			    url: '/report/create_flight_occurence',
+			    beforeSend: function (){
+			       $('#listFlightOccurence').hide();
+			       $('#createFOreport').html('<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>');
+				},
+			    success: function (){
+			       $('#createFOreport').load('/report/create_flight_occurence');
+			    },
+			    error: function (){
+			       alert("Cannot load form update!!");	
+			    }
+			 });
+			 return false;
+	  });
 
-        }
-      }
-    },
-    yAxis: {
-      alternateGridColor: null,
-      minorTickInterval: 'auto',
-      lineColor: '#000',
-      lineWidth: 1,
-      tickWidth: 1,
-      tickColor: '#000',
-      labels: {
-        style: {
-          color: '#000',
-          font: '11px Trebuchet MS, Verdana, sans-serif'
-        }
-      },
-      title: {
-        style: {
-          color: '#333',
-          fontWeight: 'bold',
-          fontSize: '12px',
-          fontFamily: 'Trebuchet MS, Verdana, sans-serif'
-        }
-      }
-    },
-    legend: {
-      itemStyle: {
-        font: '9pt Trebuchet MS, Verdana, sans-serif',
-        color: 'black'
-
-      },
-      itemHoverStyle: {
-        color: '#039'
-      },
-      itemHiddenStyle: {
-        color: 'gray'
-      }
-    },
-    credits: {
-      style: {
-        right: '10px'
-      }
-    },
-    labels: {
-      style: {
-        color: '#99b'
-      }
-    }
-  });
-
-  // default options
-  var options = {
-    chart: {
-      zoomType: 'xy'
-    },
-
-    xAxis: {
-      type: 'datetime'
-    }
-  };
-
-  // create the chart 1
-  var chart1Options = {
-    chart: {
-      renderTo: 'container1'
-    },
-    title: {
-                text: ''
-    },
-    credits: {
-                enabled: false
-    },
-    xAxis: {
-                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-            },
-            yAxis: {
-                title: {
-                    text: 'Temperature (°C)'
-                },
-                plotLines: [{
-                    value: 0,
-                    width: 1,
-                    color: '#808080'
-                }]
-            },
-            tooltip: {
-                valueSuffix: '°C'
-            },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0
-            },
-            series: [{
-                name: 'Tokyo',
-                data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-            }, {
-                name: 'New York',
-                data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
-            }, {
-                name: 'Berlin',
-                data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
-            }, {
-                name: 'London',
-                data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-            }]
-  };
-  chart1Options = jQuery.extend(true, {}, options, chart1Options);
-  var chart1 = new Highcharts.Chart(chart1Options);
-  //end the chart 1
-  
-  // create the chart 2
-  var chart2Options = {
-    chart: {
-      renderTo: 'container2',
-      type: 'column'
-    },
-    title: {
-                text: ''
-    },
-	credits: {
-                enabled: false
-    },
-    xAxis: {
-                categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania'],
-                title: {
-                    text: null
-                }
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: 'Population (millions)',
-                    align: 'high'
-                },
-                labels: {
-                    overflow: 'justify'
-                }
-    },
-   tooltip: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-                footerFormat: '</table>',
-                shared: true,
-                useHTML: true
-            },
-            plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
-                }
-    },
-    series: [{
-                name: 'Year 1800',
-                data: [107, 31, 635, 203, 2]
-            }, {
-                name: 'Year 1900',
-                data: [133, 156, 947, 408, 6]
-            }, {
-                name: 'Year 2008',
-                data: [973, 914, 4054, 732, 34]
-            }
-    ]
-  };
-  
-  chart2Options = jQuery.extend(true, {}, options, chart2Options);
-  var chart2 = new Highcharts.Chart(chart2Options);
-  //end the chart 2
-  
-  //// create the chart 3
-  var chart3Options = {
-    chart: {
-      renderTo: 'container3',
-      type: 'area'
-    },
-    title: {
-                text: ''
-    },
-	credits: {
-                enabled: false
-    },
-    xAxis: {
-                categories: ['1750', '1800', '1850', '1900', '1950', '1999', '2050'],
-                tickmarkPlacement: 'on',
-                title: {
-                    enabled: false
-                }
-            },
-            yAxis: {
-                title: {
-                    text: 'Percent'
-                }
-            },
-            tooltip: {
-                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.percentage:.1f}%</b> ({point.y:,.0f} millions)<br/>',
-                shared: true
-            },
-            plotOptions: {
-                area: {
-                    stacking: 'percent',
-                    lineColor: '#ffffff',
-                    lineWidth: 1,
-                    marker: {
-                        lineWidth: 1,
-                        lineColor: '#ffffff'
-                    }
-                }
-            },
-            series: [{
-                name: 'Asia',
-                data: [502, 635, 809, 947, 1402, 3634, 5268]
-            }, {
-                name: 'Africa',
-                data: [106, 107, 111, 133, 221, 767, 1766]
-            }, {
-                name: 'Europe',
-                data: [163, 203, 276, 408, 547, 729, 628]
-            }, {
-                name: 'America',
-                data: [18, 31, 54, 156, 339, 818, 1201]
-            }, {
-                name: 'Oceania',
-                data: [2, 2, 2, 6, 13, 30, 46]
-            }]
-  };
-  chart3Options = jQuery.extend(true, {}, options, chart3Options);
-  var chart3 = new Highcharts.Chart(chart3Options);
-  //end the chart 3
 });
 </script>

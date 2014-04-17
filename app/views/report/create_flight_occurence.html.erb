@@ -1,0 +1,188 @@
+  <div class="row-fluid">
+	<div class="span12" style="background-color: #FAFAFA;margin-bottom: 10px;">
+	  <h6>CREATE FLIGHT OCCURENCE</h6>
+	  <!-- row 1 -->
+	  <div class="row-fluid">
+	    <div class="span4" style="background-color: #FAFAFA">
+	    	<label>FLIGHT OCCURENCE REPORT No.</label>
+	    	<input type="text" id="for_id" class="input-block-level input-large" placeholder="">
+	    </div>
+	    <div class="span4" style="background-color: #FAFAFA">
+	    	<label>DCA REPORTABLE INCIDENT</label>
+	    	<select id='dca_report_incident' class="input-block-level input-large">
+	    		<option value='none' selected>select option</option>
+  				<option value='yes'>Yes</option>
+  				<option value='no'>No</option>
+	    	</select>
+	    </div>
+	    <div class="span4" style="background-color: #FAFAFA">
+	    	<label>STATUS REPORT</label>
+	    	<select id='status_report' class="input-block-level input-large">
+	    		<option value='none' selected>select option</option>
+  				<option value='submitted'>Submitted</option>
+  				<option value='open'>Open</option>
+  				<option value='waiting'>Waiting</option>
+  				<option value='closed'>Closed</option>
+  				<option value='reopened'>Reopened</option>
+	    	</select>
+	    </div>
+	  </div>
+	  
+	  <!-- row 2-->
+	  <div class="row-fluid" style="background-color: #FAFAFA">
+	    <div class="span4" style="background-color: #FAFAFA">
+	    	<label>PERSON REPORTING</label>
+	    	<input type="text" id="for_id" class="input-block-level input-large" placeholder="">
+	    </div>
+	    <div class="span4" style="background-color: #FAFAFA">
+	    	<label>POSITION</label>
+	    	<select id='dca_report_incident' class="input-block-level input-large">
+	    		<option value='none' selected>select option</option>
+  				<option value='md'>MD</option>
+  				<option value='dmd'>DMD</option>
+  				<option value='mm'>MM</option>
+  				<option value='sms manager'>SMS Manager</option>
+	    	</select>
+	    </div>
+	    <div class="span4" style="background-color: #FAFAFA">
+	    	<label>SUB REPORTS</label>
+	    	<select id='status_report' class="input-block-level input-large" >
+	    		<option value='' selected>select option</option>
+  				<option value='None'>None</option>
+  				<option value='Air Prox/Near Miss'>Air prox/Near miss</option>
+  				<option value='Bird Strike'>Bird Strike</option>
+  				<option value='DGR'>DGR</option>
+  				<option value='HESS'>HESS</option>
+	    	</select>
+	    </div>
+	  </div>
+	  
+	  <!-- row 3 -->
+	  <div class="row-fluid">
+	    <div class="span4" style="background-color: #FAFAFA">
+	    	<label>ON BEHALF OF</label>
+	    	<input type="text" id="for_id" class="input-block-level input-large" placeholder="">
+	    </div>
+	    <div class="span4" style="background-color: #FAFAFA">
+	    	<label>A/C TYPE</label>
+	    	<select id='dca_report_incident'>
+	    		<option value='none' selected>select option</option>
+  				<option value='C208B'>C208B</option>
+  				<option value='AW139'>AW139</option>
+	    	</select>
+	    </div>
+	    <div class="span4" style="background-color: #FAFAFA">
+	    	<label>A/C REGISTRATION</label>
+	    	<select id='status_report'>
+	    		<option value='none' selected>select option</option>
+  				<option value='SKR'>SKR</option>
+	    	</select>
+	    </div>
+	  </div>
+	  
+	  <!-- row 4 -->
+	  <div class="row-fluid">
+	    <div class="span4" style="background-color: #FAFAFA">
+	    	<label>OCCURENCE DATE</label>
+	    	<input type="text" id="occurence_date" class="input-block-level input-large">
+	    </div>
+	    <div class="span4" style="background-color: #FAFAFA">
+	    	<label>OCCURENCE TIME (LOCAL)</label>
+	    	<input type="text" id="local_time" class="input-block-level input-large" placeholder="">
+
+	    </div>
+	    <div class="span4" style="background-color: #FAFAFA">
+	    	<label>HUMAN FACTORS</label>
+	    	<select id='status_report'>
+	    		<option value='none' selected>select option</option>
+  				<option value='yes'>Yes</option>
+  				<option value='no'>No</option>
+	    	</select>
+	    </div>
+	  </div>
+	  
+	  <!-- row 5 -->
+	  <div class="row-fluid">
+	    <div class="span4" style="background-color: #FAFAFA">
+	    	<label>OPERATION BASE</label>
+	    	<select id='status_report'>
+	    		<option value='none' selected>select option</option>
+  				<option value='yes'>Yes</option>
+  				<option value='no'>No</option>
+	    	</select>
+	    	
+	    </div>
+	    <div class="span4" style="background-color: #FAFAFA">
+	    	<label>LOCATION (if not on base)</label>
+	    	<input type="text" id="occurence_date" class="input-block-level input-large">
+	    </div>
+	    <div class="span4" style="background-color: #FAFAFA">
+	    	<label>REPORTABLE OCCURENCE</label>
+	    	<select id='status_report'>
+	    		<option value='none' selected>select option</option>
+  				<option value='yes'>Yes</option>
+  				<option value='no'>No</option>
+	    	</select>
+	    </div>
+	  </div>
+	  
+	  <!-- row 6 -->
+	  <div class="row-fluid">
+	    <div class="span4" style="background-color: #FAFAFA">
+	    	<label>DEATH/INJURIES/DAMAGE (potential insurance claim)</label>
+	    	<select id='status_report'>
+	    		<option value='none' selected>select option</option>
+  				<option value='yes'>Yes</option>
+  				<option value='no'>No</option>
+	    	</select>
+	    </div>
+	    <div class="span4" style="background-color: #FAFAFA">
+	    	<label>REPORT MANAGER</label>
+	    	<input type="text" id="occurence_date" class="input-block-level input-large">
+	    </div>
+	    <div class="span4" style="background-color: #FAFAFA">
+	    	<label>DELEGATE</label>
+	    	<input type="text" id="occurence_date" class="input-block-level input-large">
+	    </div>
+	  </div>
+	  
+	  
+	  
+	  
+	  
+	  
+	  <div class="row-fluid">
+	    <div class="span4" style="background-color: blue">.col-md-2</div>
+	    <div class="span4" style="background-color: blue">.col-md-2</div>
+	    <div class="span4" style="background-color: blue">.col-md-2</div>
+	  </div>
+	  <div class="row-fluid">
+	    <div class="span12" style="background-color: green">
+
+
+	    </div>
+	  </div>
+	</div><!--/span-->
+  </div><!--/row-->
+  
+<script type="text/javascript">
+	var dt = new Date();
+	var time = (dt.getHours()<10 ? '0' : '') + dt.getHours() + ":" + (dt.getMinutes()<10 ? '0' : '') + dt.getMinutes();
+	var month = dt.getMonth()+1;
+	var day = dt.getDate();
+
+	var today =  (day<10 ? '0' : '') + day + '/' + (month<10 ? '0' : '') + month + '/' + dt.getFullYear();
+
+	$('#local_time').val(time);
+	
+	$('#occurence_date').val(today);
+	
+	$('#occurence_date').datepicker({
+	 	format: "dd/mm/yyyy",
+		todayBtn: "linked",
+		calendarWeeks: true,
+		autoclose: true,
+		todayHighlight: true
+	});
+</script>
+

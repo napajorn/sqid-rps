@@ -349,7 +349,7 @@
 			    	<select id='nature_flight' class="input-block-level input-large">
 			    		<option value='' selected>select option</option>
 			    		<% @nature_flight.each do |nature| %>
-  							<option value='<%=nature.nature_name%>' <%=(@flight_occurence.nature_type == nature.nature_name ? 'selected' : '' )%>><%=nature.nature_name%></option>
+  							<option value='<%=nature.nature_name%>' <%=(@flight_occurence.nature_flight == nature.nature_name ? 'selected' : '' )%>><%=nature.nature_name%></option>
   						<% end %>
 			    	</select>
 			    </div>

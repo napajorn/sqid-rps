@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140414081424) do
+ActiveRecord::Schema.define(version: 20140504064600) do
 
   create_table "ata_chapters", force: true do |t|
     t.string   "chapter_name"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20140414081424) do
     t.string   "incident_accident"
     t.string   "ata_chapter"
     t.string   "ata_section"
-    t.string   "death_injuries_damage"
+    t.string   "insurance_claim"
     t.string   "report_manager"
     t.string   "delegate"
     t.string   "title_of_occurence"
@@ -70,10 +70,10 @@ ActiveRecord::Schema.define(version: 20140414081424) do
     t.string   "flight_condition"
     t.string   "time_of_day"
     t.string   "other_describe"
-    t.string   "attitude"
+    t.string   "altitude"
     t.string   "height"
     t.string   "flight_level"
-    t.string   "predictation"
+    t.string   "precipitation"
     t.string   "icing"
     t.string   "oat"
     t.string   "visibility_distance"

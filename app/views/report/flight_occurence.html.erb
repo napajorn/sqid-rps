@@ -1,16 +1,22 @@
 
+
 <div class="container-fluid">
   <div class="row-fluid"> 
     <div class="span12">
     	<!--/row span 12 -->
 	   <div class="row-fluid">
-	    <div class="span12" style="background-color: #FAFAFA;margin-bottom: 10px;">
+	    <div class="span12" style="background-color: #FAFAFA;">
 	      <h5>REACTIVE > FLIGHT OCCURENCE REPORT</h5>
 	    </div><!--/span-->
       </div><!--/row-->
       <!-- end row span 12 -->
-      
-       <!--/row span 12 [9,3] -->
+      <div class="row-fluid">
+	    <div class="span12">
+	      <br/><h2></h2><a id='createFO' class="btn btn-primary" href='/report/show_flight_occurence'>details</a></h2>
+	    </div>
+      </div>
+      <hr/>
+       <!--/row span 12 [9,3]
 	   <div class="row-fluid">
 	    <div class="span4 sp4">
 	      <h6>Line Chart</h6>
@@ -23,29 +29,29 @@
 	      <div id="container2" style="height: 200px;width: auto;"></div>
 	      <p></p>
 	      <p><a class="btn" href="#">View details &raquo;</a></p>
-	    </div><!--/span -->
+	    </div>
 	    <div class="span4 sp4">
 	      <h6>Area Chart</h6>
 	      <div id="container3" style="height: 200px;width: auto;"></div>
 	      <p></p>
 	      <p><a class="btn" href="#">View details &raquo;</a></p>
-	    </div><!--/span -->
-      </div><!--/row-->
-      <!-- end row span 12 [9,3] -->
+	    </div>
+      </div>
+      <!-- end row span 12 [9,3]
       <div class="row-fluid">
 	    <div class="span12" style="background-color: #FAFAFA;margin-bottom: 10px;">
 	      <br/><button id='createFO' class="btn btn-primary" type="button">create report</button>
-	    </div><!--/span-->
-      </div><!--/row-->
-      <!-- end row span 12 -->
+	    </div>
+      </div>
+      -->
       
+      <!-- 
       <div id='listFlightOccurence'>
-      <% 2.times do %>
       <div class="row-fluid">
 	    <div class="span12" style="background-color: #FAFAFA;margin-bottom: 10px;">
 	      <h6>FLIGHT OCCURENCE REPORT</h6>
 		  <div class="row-fluid">
-            <div class="span2" style="background-color: red">.col-md-2</div>
+            <div class="span2" style="background-color: #FF4000">.col-md-2</div>
             <div class="span2" style="background-color: red">.col-md-2</div>
             <div class="span2" style="background-color: red">.col-md-2</div>
             <div class="span2" style="background-color: red">.col-md-2</div>
@@ -61,9 +67,8 @@
             <div class="span6" style="background-color: green">.col-md-2</div>
             <div class="span6" style="background-color: green">.col-md-2</div>
 		  </div>
-	    </div><!--/span-->
-      </div><!--/row-->
-      <%end%>
+	    </div>
+      </div>
       
       <div class="row-fluid">
 	    <div class="span12" style="background-color: #FAFAFA;margin-bottom: 10px;">
@@ -76,7 +81,6 @@
 		  </div>
 		 </div>
 	 </div>
-
      </div> <!-- end div listFlightOccurence -->
      
      <!-- create flight occurence -->
@@ -90,6 +94,7 @@
   </div><!--/row-->
 </div><!--/.fluid-container-->
 <script type="text/javascript">
+ $.support.cors = true;
 	$(function () {
 	  // set the theme
 	  Highcharts.setOptions({
@@ -246,7 +251,8 @@
 	            }]
 	  };
 	  chart1Options = jQuery.extend(true, {}, options, chart1Options);
-	  var chart1 = new Highcharts.Chart(chart1Options);
+	  //var chart1 = new Highcharts.Chart(chart1Options);
+	  
 	  //end the chart 1
 	  
 	  // create the chart 2
@@ -305,7 +311,7 @@
 	  };
 	  
 	  chart2Options = jQuery.extend(true, {}, options, chart2Options);
-	  var chart2 = new Highcharts.Chart(chart2Options);
+	  //var chart2 = new Highcharts.Chart(chart2Options);
 	  //end the chart 2
 	  
 	  //// create the chart 3
@@ -365,26 +371,51 @@
 	            }]
 	  };
 	  chart3Options = jQuery.extend(true, {}, options, chart3Options);
-	  var chart3 = new Highcharts.Chart(chart3Options);
+	  //var chart3 = new Highcharts.Chart(chart3Options);
 	  //end the chart 3
 	  
-	  $('#createFO').click(function(){
-		  	$.ajax({
-				type: 'POST',
-			    url: '/report/create_flight_occurence',
-			    beforeSend: function (){
-			       $('#listFlightOccurence').hide();
-			       $('#createFOreport').html('<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>');
-				},
-			    success: function (){
-			       $('#createFOreport').load('/report/create_flight_occurence');
-			    },
-			    error: function (){
-			       alert("Cannot load form update!!");	
-			    }
-			 });
-			 return false;
-	  });
-
+	  $.ajax({
+		type: 'POST',
+	    url: '/report/create_flight_occurence',
+	    beforeSend: function (){
+	       $('#listFlightOccurence').hide();
+	       $('#createFOreport').html('<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>');
+		},
+	    success: function (){
+	       $('#createFOreport').load('/report/create_flight_occurence');
+	    },
+	    error: function (){
+	       alert("Cannot load form update!!");	
+	    }
+	 });
 });
+
+
+// Function save graph to png
+//function saveChartToImage(chart){
+//	
+//	var obj = {},chart;
+//	obj.svg = chart.getSVG();
+//	obj.type = 'image/png';
+//	obj.width = 450;
+//	obj.async = true;
+//	obj.authenticity_token= AUTH_TOKEN;
+      
+//	exportUrl = '/report/create_png';
+	
+//	$.ajax({
+//		type: 'POST',
+//		url: exportUrl,
+//		data:  obj,
+//		cache: false,
+//		async: true,
+//		crossDomain: true,
+//		success: function(data) {
+//			alert('success: ' + data);
+//		},
+//		error: function(data) {
+//			alert(data.status + ' ' + data.statusText);
+//		}
+//	});
+//}
 </script>

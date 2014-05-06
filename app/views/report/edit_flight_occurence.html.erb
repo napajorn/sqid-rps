@@ -15,32 +15,35 @@
  /*font-weight: normal;*/
 }
 </style>
+<%debug(@flight_occurence)%>
+ <% unless @flight_occurence.blank? %>
   <div class="row-fluid">
 	<div class="span12" style="background-color: #FAFAFA;margin-bottom: 10px;">
-	  <h3>CREATE FLIGHT OCCURENCE REPORT</h3><a href="section1" style="text-decoration: none"></a>
+	  <h3>UPDATE FLIGHT OCCURENCE REPORT</h3><a href="section1" style="text-decoration: none"></a>
+		<input type="hidden" id="id" class="input-block-level input-large" placeholder="" value="<%=@flight_occurence.id%>">
 	  <!-- row 1 -->
 	  <div class="row-fluid">
 	    <div class="span4" style="background-color: #FAFAFA">
 	    	<label><b>Flight Occurence Report No.</b></label>
-	    	<input type="text" id="fo_no" class="input-block-level input-large" placeholder="">
+	    	<input type="text" id="fo_no" class="input-block-level input-large" placeholder="" value="<%=@flight_occurence.fo_no unless @flight_occurence.fo_no.blank? %>">
 	    </div>
 	    <div class="span4" style="background-color: #FAFAFA">
 	    	<label><b>DCA Reportable Incident</b></label>
 	    	<select id='dca_reportable_incident' class="input-block-level input-large">
-	    		<option value='none' selected>select option</option>
-  				<option value='yes'>Yes</option>
-  				<option value='no'>No</option>
+	    		<option value='none' <%=(@flight_occurence.dca_reportable_incident == 'none' ? 'selected' : '' )%>>select option</option>
+  				<option value='yes' <%=(@flight_occurence.dca_reportable_incident == 'yes' ? 'selected' : '' )%>>Yes</option>
+  				<option value='no' <%=(@flight_occurence.dca_reportable_incident == 'no' ? 'selected' : '' )%>>No</option>
 	    	</select>
 	    </div>
 	    <div class="span4" style="background-color: #FAFAFA">
 	    	<label><b>Status Report</b></label>
 	    	<select id='status_report' class="input-block-level input-large">
-	    		<option value='none' selected>select option</option>
-  				<option value='submitted'>Submitted</option>
-  				<option value='open'>Open</option>
-  				<option value='waiting'>Waiting</option>
-  				<option value='closed'>Closed</option>
-  				<option value='reopened'>Reopened</option>
+	    		<option value=''>select option</option>
+  				<option value='submitted' <%=(@flight_occurence.status_report == 'SUBMIITTED' ? 'selected' : '' )%>>Submitted</option>
+  				<option value='open' <%=(@flight_occurence.status_report == 'OPEN' ? 'selected' : '' )%>>Open</option>
+  				<option value='waiting' <%=(@flight_occurence.status_report == 'WAITING' ? 'selected' : '' )%>>Waiting</option>
+  				<option value='closed' <%=(@flight_occurence.status_report == 'CLOASED' ? 'selected' : '' )%>>Closed</option>
+  				<option value='reopened' <%=(@flight_occurence.status_report == 'REOPENED' ? 'selected' : '' )%>>Reopened</option>
 	    	</select>
 	    </div>
 	  </div>
@@ -49,33 +52,33 @@
 	  <div class="row-fluid" style="background-color: #FAFAFA">
 	    <div class="span4" style="background-color: #FAFAFA">
 	    	<label><b>Person Reporting</b></label>
-	    	<input type="text" id="person_reporting" class="input-block-level input-large" placeholder="">
+	    	<input type="text" id="person_reporting" class="input-block-level input-large" placeholder="" value="<%=@flight_occurence.person_reporting unless @flight_occurence.person_reporting.blank?%>">
 	    </div>
 	    <div class="span4" style="background-color: #FAFAFA">
 	    	<label><b>Position</b></label>
 	    	<select id='position' class="input-block-level input-large">
-	    		<option value='none' selected>select option</option>
-  				<option value='MD'>MD</option>
-  				<option value='DMD'>DMD</option>
-  				<option value='MM'>MM</option>
-  				<option value='Safety'>Safety</option>
-  				<option value='Pilot'>Pilot</option>
-  				<option value='Dispatcher'>Dispatcher</option>
-  				<option value='Ramp Ops'>Ramp Ops</option>
-  				<option value='Maintenance'>Maintenace</option>
-  				<option value='IT'>IT</option>
-  				<option value='QA'>QA</option>
+	    		<option value=''>select option</option>
+  				<option value='MD' <%=(@flight_occurence.position == 'MD' ? 'selected' : '' )%>>MD</option>
+  				<option value='DMD' <%=(@flight_occurence.position == 'DMD' ? 'selected' : '' )%>>DMD</option>
+  				<option value='MM' <%=(@flight_occurence.position == 'MM' ? 'selected' : '' )%>>MM</option>
+  				<option value='Safety' <%=(@flight_occurence.position == 'Safety' ? 'selected' : '' )%>>Safety</option>
+  				<option value='Pilot' <%=(@flight_occurence.position == 'Pilot' ? 'selected' : '' )%>>Pilot</option>
+  				<option value='Dispatcher' <%=(@flight_occurence.position == 'Dispatcher' ? 'selected' : '' )%>>Dispatcher</option>
+  				<option value='Ramp Ops' <%=(@flight_occurence.position == 'Ramp Ops' ? 'selected' : '' )%>>Ramp Ops</option>
+  				<option value='Maintenance' <%=(@flight_occurence.position == 'Maintenance' ? 'selected' : '' )%>>Maintenace</option>
+  				<option value='IT' <%=(@flight_occurence.position == 'IT' ? 'selected' : '' )%>>IT</option>
+  				<option value='QA' <%=(@flight_occurence.position == 'QA' ? 'selected' : '' )%>>QA</option>
 	    	</select>
 	    </div>
 	    <div class="span4" style="background-color: #FAFAFA">
 	    	<label><b>Sub Reports</b></label>
 	    	<select id='sub_report' class="input-block-level input-large" >
-	    		<option value='' selected>select option</option>
-  				<option value='None'>None</option>
-  				<option value='Air Prox/Near Miss'>Air prox/Near miss</option>
-  				<option value='Bird Strike'>Bird Strike</option>
-  				<option value='DGR'>DGR</option>
-  				<option value='HESS'>HESS</option>
+	    		<option value=''>select option</option>
+  				<option value='None' <%=(@flight_occurence.sub_report == 'None' ? 'selected' : '' )%>>None</option>
+  				<option value='Air Prox/Near Miss' <%=(@flight_occurence.sub_report == 'Air Prox/Near Miss' ? 'selected' : '' )%>>Air prox/Near miss</option>
+  				<option value='Bird Strike' <%=(@flight_occurence.sub_report == 'Bird Strike' ? 'selected' : '' )%>>Bird Strike</option>
+  				<option value='DGR' <%=(@flight_occurence.sub_report == 'DGR' ? 'selected' : '' )%>>DGR</option>
+  				<option value='HESS' <%=(@flight_occurence.sub_report == 'HESS' ? 'selected' : '' )%>>HESS</option>
 	    	</select>
 	    </div>
 	  </div>
@@ -84,22 +87,22 @@
 	  <div class="row-fluid">
 	    <div class="span4" style="background-color: #FAFAFA">
 	    	<label><b>On Behalf Of</b></label>
-	    	<input type="text" id="on_behalf" class="input-block-level" placeholder="">
+	    	<input type="text" id="on_behalf" class="input-block-level" placeholder="" value="<%=@flight_occurence.on_behalf unless @flight_occurence.on_behalf.blank?%>">
 	    </div>
 	    <div class="span4" style="background-color: #FAFAFA">
 	    	<label><b><font color='#FF4000'>A/C Type *</font></b></label>
 	    	<select id='ac_type' class="input-block-level input-large">
-	    		<option value='' selected>select option</option>
-  				<option value='C208B'>C20B8</option>
-  				<option value='AW139'>AW139</option>
+	    		<option value=''>select option</option>
+  				<option value='C208B' <%=(@flight_occurence.ac_type == 'C208B' ? 'selected' : '' )%>>C20B8</option>
+  				<option value='AW139' <%=(@flight_occurence.ac_type == 'AW139' ? 'selected' : '' )%>>AW139</option>
 	    	</select>
 	    </div>
 	    <div class="span4" style="background-color: #FAFAFA">
 	    	<label><b><font color='#FF4000'>A/C Registration *</font></b></label>
 	    	<select id='ac_registration' class="input-block-level input-large">
-	    		<option value='' selected>select option</option>
-  				<option value='SKR'>SKR</option>
-  				<option value='DSG'>DSG</option>
+	    		<option value=''>select option</option>
+  				<option value='SKR' <%=(@flight_occurence.ac_registration == 'SKR' ? 'selected' : '' )%>>SKR</option>
+  				<option value='DSG' <%=(@flight_occurence.ac_registration == 'DSG' ? 'selected' : '' )%>>DSG</option>
 	    	</select>
 	    </div>
 	  </div>
@@ -108,19 +111,19 @@
 	  <div class="row-fluid">
 	    <div class="span4" style="background-color: #FAFAFA">
 	    	<label><b><font color='#FF4000'><u>Occurence Date</u> *</font></b></label>
-	    	<input type="text" id="occurence_date" class="input-block-level input-large">
+	    	<input type="text" id="occurence_date" class="input-block-level input-large" value="<%=@flight_occurence.occurence_date.strftime('%d/%m/%Y') unless @flight_occurence.occurence_date.blank?%>">
 	    </div>
 	    <div class="span4" style="background-color: #FAFAFA">
 	    	<label><b>Occurence Time</b> (LOCAL)</label>
-	    	<input type="text" id="occurence_time" class="input-block-level input-large" placeholder="">
+	    	<input type="text" id="occurence_time" class="input-block-level input-large" placeholder="" value="<%=@flight_occurence.occurence_time.strftime('%H:%M') unless @flight_occurence.occurence_time.blank?%>">
 
 	    </div>
 	    <div class="span4" style="background-color: #FAFAFA">
 	    	<label><b><font color='#FF4000'>Human Factors</font></b></label>
 	    	<select id='human_factor' class="input-block-level input-large">
-	    		<option value='' selected>select option</option>
-  				<option value='yes'>Yes</option>
-  				<option value='no'>No</option>
+	    		<option value=''>select option</option>
+  				<option value='yes' <%=(@flight_occurence.human_factor == 'yes' ? 'selected' : '' )%>>Yes</option>
+  				<option value='no' <%=(@flight_occurence.human_factor == 'no' ? 'selected' : '' )%>>No</option>
 	    	</select>
 	    </div>
 	  </div>
@@ -130,24 +133,24 @@
 	    <div class="span4" style="background-color: #FAFAFA">
 	    	<label><b><font color='#FF4000'>Operation Base *</font></b></label>
 	    	<select id='operation_base' class="input-block-level input-large">
-	    		<option value='' selected>select option</option>
-  				<option value='Head Office'>Head Office</option>
-  				<option value='DMK'>DMK</option>
-  				<option value='SKL'>SKL</option>
-  				<option value='UTP'>UTP</option>
+	    		<option value=''>select option</option>
+  				<option value='Head Office' <%=(@flight_occurence.operation_base == 'Head Office' ? 'selected' : '' )%>>Head Office</option>
+  				<option value='DMK' <%=(@flight_occurence.operation_base == 'DMK' ? 'selected' : '' )%>>DMK</option>
+  				<option value='SKL' <%=(@flight_occurence.operation_base == 'SKL' ? 'selected' : '' )%>>SKL</option>
+  				<option value='UTP' <%=(@flight_occurence.operation_base == 'UTP' ? 'selected' : '' )%>>UTP</option>
 	    	</select>
 	    	
 	    </div>
 	    <div class="span4" style="background-color: #FAFAFA">
 	    	<label><b>Location</b> (if not on base)</label>
-	    	<input type="text" id="location_not_base" class="input-block-level input-large">
+	    	<input type="text" id="location_not_base" class="input-block-level input-large" value="<%=@flight_occurence.location_not_base unless @flight_occurence.location_not_base.blank?%>">
 	    </div>
 	    <div class="span4" style="background-color: #FAFAFA">
 	    	<label><b>Reportable Occurence</u></b></label>
 	    	<select id='reportable_occurence' class="input-block-level input-large">
-	    		<option value='' selected>select option</option>
-  				<option value='yes'>Yes</option>
-  				<option value='no'>No</option>
+	    		<option value=''>select option</option>
+  				<option value='yes' <%=(@flight_occurence.reportable_occurence == 'yes' ? 'selected' : '' )%>>Yes</option>
+  				<option value='no' <%=(@flight_occurence.reportable_occurence == 'no' ? 'selected' : '' )%>>No</option>
 	    	</select>
 	    </div>
 	  </div>
@@ -156,26 +159,26 @@
 	    <div class="span4" style="background-color: #FAFAFA">
 	    	<label><b>Incident / Accident</b></label>
 	    	<select id='incident_accident' class="input-block-level input-large">
-	    		<option value='' selected>select option</option>
-  				<option value='Occurence'>Occurence</option>
-  				<option value='Incident'>Incident</option>
-  				<option value='Accident'>Accident</option>
+	    		<option value=''>select option</option>
+  				<option value='Occurence' <%=(@flight_occurence.incident_accident == 'Occurence' ? 'selected' : '' )%>>Occurence</option>
+  				<option value='Incident' <%=(@flight_occurence.incident_accident == 'Incident' ? 'selected' : '' )%>>Incident</option>
+  				<option value='Accident' <%=(@flight_occurence.incident_accident == 'Accident' ? 'selected' : '' )%>>Accident</option>
 	    	</select>
 	    </div>
 	    <div class="span4" style="background-color: #FAFAFA">
 	    	<label><b>ATA Chapter</b></label>
 	    	<select id='ata_chapter' class="input-block-level input-large">
-	    		<option value='' selected>select option</option>
+	    		<option value=''>select option</option>
 	    		<% @ata_chapter.each do |ata| %>
-  					<option value='<%=ata.chapter_name%>'><%=ata.chapter_name%></option>
+  					<option value='<%=ata.chapter_name%>' <%=(@flight_occurence.ata_chapter == ata.chapter_name ? 'selected' : '' )%> ><%=ata.chapter_name%></option>
   				<% end %>
 	    	</select>
 	    </div>
 	    <div class="span4" style="background-color: #FAFAFA">
 	    	<label><b>ATA Section</u></b></label>
 	    	<select id='ata_section' class="input-block-level input-large">
-	    		<option value='' selected>select option</option>
-  				<option value='none'>None</option>
+	    		<option value=''>select option</option>
+  				<option value='none' <%=(@flight_occurence.ata_section == 'none' ? 'selected' : '' )%>>None</option>
 	    	</select>
 	    </div>
 	  </div>
@@ -185,18 +188,18 @@
 	    <div class="span4" style="background-color: #FAFAFA">
 	    	<label><b>Death/Injuries/Damage</b> (potential insurance claim)</label>
 	    	<select id='insurance_claim' class="input-block-level input-large">
-	    		<option value='' selected>select option</option>
-  				<option value='yes'>Yes</option>
-  				<option value='no'>No</option>
+	    		<option value=''>select option</option>
+  				<option value='yes' <%=(@flight_occurence.insurance_claim == 'yes' ? 'selected' : '' )%>>Yes</option>
+  				<option value='no' <%=(@flight_occurence.insurance_claim == 'no' ? 'selected' : '' )%>>No</option>
 	    	</select>
 	    </div>
 	    <div class="span4" style="background-color: #FAFAFA">
 	    	<label><b>Report Manager</b></label>
-	    	<input type="text" id="report_manager" class="input-block-level input-large">
+	    	<input type="text" id="report_manager" class="input-block-level input-large" value="<%=@flight_occurence.report_manager%>">
 	    </div>
 	    <div class="span4" style="background-color: #FAFAFA">
 	    	<label><b>Delegate</b></label>
-	    	<input type="text" id="delegate" class="input-block-level input-large">
+	    	<input type="text" id="delegate" class="input-block-level input-large" value="<%=@flight_occurence.delegate%>">
 	    </div>
 	  </div>
 	  
@@ -204,32 +207,32 @@
 	  <div class="row-fluid">
 	    <div class="span8" style="color: #DF3A01">
 	    	<label><b><font color='#FF4000'>Title Of Occurence *</font></b></label>
-	    	<input type="text" id="title_of_occurence" class="input-block-level input-large" placeholder='input title name'>
+	    	<input type="text" id="title_of_occurence" class="input-block-level input-large" placeholder='input title name' value="<%=@flight_occurence.title_of_occurence unless @flight_occurence.title_of_occurence.blank?%>">
 	    </div>
 	  </div>
 	  
 	  <div class="row-fluid">
 	    <div class="span12">
 	    	<label><b><font color='#FF4000'>Description Of Occurence *</font></b></label>
-	    	<textarea id="description_occurence" class="input-block-level input-large" rows="5"></textarea>
+	    	<textarea id="description_occurence" class="input-block-level input-large" rows="5"><%=@flight_occurence.description_occurence unless @flight_occurence.description_occurence.blank?%></textarea>
 	    </div>
 	  </div>
 	  <div class="row-fluid">
 	    <div class="span12">
 	    	<label><b>Correction</b></label>
-	    	<textarea id="correction" class="input-block-level input-large" rows="5"></textarea>
+	    	<textarea id="correction" class="input-block-level input-large" rows="5"><%=@flight_occurence.correction%></textarea>
 	    </div>
 	  </div>
 	  <div class="row-fluid">
 	    <div class="span12">
 	    	<label><b>Root Cause</b></label>
-	    	<textarea id="root_cause" class="input-block-level input-large" rows="5"></textarea>
+	    	<textarea id="root_cause" class="input-block-level input-large" rows="5"><%=@flight_occurence.root_cause%></textarea>
 	    </div>
 	  </div>
 	  <div class="row-fluid">
 	    <div class="span12">
 	    	<label><b>Preventive Plan</b></label>
-	    	<textarea id="preventive_plan" class="input-block-level input-large" rows="5"></textarea>
+	    	<textarea id="preventive_plan" class="input-block-level input-large" rows="5"><%=@flight_occurence.preventive_plan%></textarea>
 	    </div>
 	  </div>
 	  
@@ -250,20 +253,20 @@
 		    </div>
 		    <div class="span4">
 		    	<select id='regulatory_authorities' class="input-block-level input-large">
-		    		<option value='' selected>select option</option>
-	  				<option value='yes'>Yes</option>
-	  				<option value='no'>No</option>
+		    		<option value=''>select option</option>
+	  				<option value='yes' <%=(@flight_occurence.regulatory_authorities == 'yes' ? 'selected' : '' )%>>Yes</option>
+	  				<option value='no' <%=(@flight_occurence.regulatory_authorities == 'no' ? 'selected' : '' )%>>No</option>
 		    	</select>
 		    </div>
 	    </div>
 	    <div class="row-fluid">
 		    <div class="span4">
 		    	<label><b>Date Reported</b></label>
-		    	<input type="text" id="date_reported" class="input-block-level input-large">
+		    	<input type="text" id="date_reported" class="input-block-level input-large" value="<%=@flight_occurence.date_reported.strftime('%d/%m/%Y') unless @flight_occurence.date_reported.blank?%>">
 		    </div>
 		    <div class="span4">
 		    	<label><b>Tech Log#</b> (if applicable)</label>
-		    	<input type="text" id="tech_log" class="input-block-level input-large">
+		    	<input type="text" id="tech_log" class="input-block-level input-large" value="<%=@flight_occurence.tech_log%>">
 		    </div>
 		</div>
 	  </div>
@@ -275,29 +278,29 @@
 	    <div class="row-fluid">
 		    <div class="span4">
 		    	<label><b><font color='#FF4000'>Commander *</font></b></label>
-		    	<input type="text" id="commander" class="input-block-level input-large">
+		    	<input type="text" id="commander" class="input-block-level input-large" value="<%=@flight_occurence.commander%>">
 		    </div>
 		    <div class="span4">
 		    	<label><b>Co-Pilot</b></label>
-		    	<input type="text" id="co_pilot" class="input-block-level input-large">
+		    	<input type="text" id="co_pilot" class="input-block-level input-large" value="<%=@flight_occurence.co_pilot%>">
 		    </div>
 		    <div class="span4">
 		    	<label><b>Other Crew</b></label>
-		    	<input type="text" id="other_crew1" class="input-block-level input-large">
+		    	<input type="text" id="other_crew1" class="input-block-level input-large" value="<%=@flight_occurence.other_crew1%>">
 		    </div>
 	    </div>
 	    <div class="row-fluid">
 		    <div class="span4">
 		    	<label><b>Pilot License#</b></label>
-		    	<input type="text" id="pilot_license" class="input-block-level input-large">
+		    	<input type="text" id="pilot_license" class="input-block-level input-large" value="<%=@flight_occurence.pilot_license%>">
 		    </div>
 		    <div class="span4">
 		    	<label><b>Co-Pilot License#</b></label>
-		    	<input type="text" id="co_pilot_license" class="input-block-level input-large">
+		    	<input type="text" id="co_pilot_license" class="input-block-level input-large" value="<%=@flight_occurence.co_pilot_license%>">
 		    </div>
 		    <div class="span4">
 		    	<label><b>Other Crew</b></label>
-		    	<input type="text" id="other_crew2" class="input-block-level input-large">
+		    	<input type="text" id="other_crew2" class="input-block-level input-large" value="<%=@flight_occurence.other_crew2%>">
 		    </div>
 	    </div>
 	  </div>
@@ -309,53 +312,53 @@
 	    <div class="row-fluid">
 		    <div class="span4">
 		    	<label><b>Flight#</b></label>
-		    	<input type="text" id="flight" class="input-block-level input-large">
+		    	<input type="text" id="flight" class="input-block-level input-large" value="<%=@flight_occurence.flight%>">
 		    </div>
 		    <div class="span4">
 		    	<label><b>Route From</b></label>
 		    	<select id='route_from' class="input-block-level input-large">
-		    		<option value='' selected>select option</option>
-	  				<option value='DMK'>DMK</option>
-	  				<option value='MSI'>MSI</option>
-	  				<option value='BOA'>BOA</option>
-	  				<option value='UTP'>UTP</option>
+		    		<option value=''>select option</option>
+	  				<option value='DMK' <%=(@flight_occurence.route_from == 'DMK' ? 'selected' : '' )%>>DMK</option>
+	  				<option value='MSI' <%=(@flight_occurence.route_from == 'MSI' ? 'selected' : '' )%>>MSI</option>
+	  				<option value='BOA' <%=(@flight_occurence.route_from == 'BOA' ? 'selected' : '' )%>>BOA</option>
+	  				<option value='UTP' <%=(@flight_occurence.route_from == 'UTP' ? 'selected' : '' )%>>UTP</option>
 		    	</select>
 		    </div>
 		    <div class="span4">
 		    	<label><b>Route To</b></label>
 		    	<select id='route_to' class="input-block-level input-large">
-		    		<option value='' selected>select option</option>
-	  				<option value='DMK'>DMK</option>
-	  				<option value='MSI'>MSI</option>
-	  				<option value='BOA'>BOA</option>
-	  				<option value='UTP'>UTP</option>
+		    		<option value=''>select option</option>
+	  				<option value='DMK' <%=(@flight_occurence.route_to == 'DMK' ? 'selected' : '' )%>DMK</option>
+	  				<option value='MSI' <%=(@flight_occurence.route_to == 'MSI' ? 'selected' : '' )%>>MSI</option>
+	  				<option value='BOA' <%=(@flight_occurence.route_to == 'BOA' ? 'selected' : '' )%>>BOA</option>
+	  				<option value='UTP' <%=(@flight_occurence.route_to == 'UTP' ? 'selected' : '' )%>>UTP</option>
 		    	</select>
 		    </div>
 		    <div class="row-fluid">
 			    <div class="span4">
 			    	<label><b>Flight Type</b></label>
 			    	<select id='flight_type' class="input-block-level input-large">
-			    		<option value='' selected>select option</option>
-			    		<option value='none'>None</option>
-		  				<option value='offshore'>Offshore</option>
-		  				<option value='onshore'>Onshore</option>
+			    		<option value=''>select option</option>
+			    		<option value='none' <%=(@flight_occurence.flight_type == 'none' ? 'selected' : '' )%>>None</option>
+		  				<option value='offshore' <%=(@flight_occurence.flight_type == 'offshore' ? 'selected' : '' )%>>Offshore</option>
+		  				<option value='onshore' <%=(@flight_occurence.flight_type == 'onshore' ? 'selected' : '' )%>>Onshore</option>
 			    	</select>
 			    </div>
 			    <div class="span4">
 			    	<label><b>Nature Flight</b></label>
 			    	<select id='nature_flight' class="input-block-level input-large">
-			    		<option value='none' selected>select option</option>
+			    		<option value='' selected>select option</option>
 			    		<% @nature_flight.each do |nature| %>
-  							<option value='<%=nature.nature_name%>'><%=nature.nature_name%></option>
+  							<option value='<%=nature.nature_name%>' <%=(@flight_occurence.nature_type == nature.nature_name ? 'selected' : '' )%>><%=nature.nature_name%></option>
   						<% end %>
 			    	</select>
 			    </div>
 			    <div class="span4">
 			    	<label><b>Returned To Base?</b></label>
 			    	<select id='returned_to_base' class="input-block-level input-large">
-			    		<option value='' selected>select option</option>
-		  				<option value='yes'>Yes</option>
-		  				<option value='no'>No</option>
+			    		<option value=''>select option</option>
+		  				<option value='yes' <%=(@flight_occurence.returned_to_base == 'yes' ? 'selected' : '' )%>>Yes</option>
+		  				<option value='no' <%=(@flight_occurence.returned_to_base == 'no' ? 'selected' : '' )%>>No</option>
 			    	</select>
 			    </div>	
 		    </div>	
@@ -365,21 +368,21 @@
 			    	<select id='phase_of_flight' class="input-block-level input-large">
 			    		<option value='' selected>select option</option>
 			    		<% @phase_flight.each do |phase| %>
-  							<option value='<%=phase.phase_name%>'><%=phase.phase_name%></option>
+  							<option value='<%=phase.phase_name%>' <%=(@flight_occurence.phase_of_flight == phase.phase_name ? 'selected' : '' )%> ><%=phase.phase_name%></option>
   						<% end %>
 			    	</select>
 			    </div>
 			    <div class="span4">
 			    	<label><b>Diverted To</b></label>
-			    	<input type="text" id="diverted_to" class="input-block-level input-large">
+			    	<input type="text" id="diverted_to" class="input-block-level input-large" value="<%=@flight_occurence.diverted_to%>">
 			    </div>
 			    <div class="span4">
 			    	<label><b>Flight Rule</b></label>
 			    	<select id='flight_rule' class="input-block-level input-large">
-			    		<option value='' selected>select option</option>
-			    		<option value='None'>None</option>
-		  				<option value='IFR'>IFR</option>
-		  				<option value='VFR'>VFR</option>
+			    		<option value=''>select option</option>
+			    		<option value='None' <%=(@flight_occurence.flight_rule == 'None' ? 'selected' : '' )%>>None</option>
+		  				<option value='IFR' <%=(@flight_occurence.flight_rule == 'IFR' ? 'selected' : '' )%>>IFR</option>
+		  				<option value='VFR' <%=(@flight_occurence.flight_rule == 'VFR' ? 'selected' : '' )%>>VFR</option>
 			    	</select>
 			    </div>	
 		    </div>
@@ -387,26 +390,26 @@
 			    <div class="span4">
 			    	<label><b>Flight Condition</b></label>
 			    	<select id='flight_condition' class="input-block-level input-large">
-			    		<option value=''>None</option>
-		  				<option value='IMC'>IMC</option>
-		  				<option value='VMC'>VMC</option>
+			    		<option value='none' <%=(@flight_occurence.flight_condition == 'none' ? 'selected' : '' )%>>None</option>
+		  				<option value='IMC' <%=(@flight_occurence.flight_condition == 'IMC' ? 'selected' : '' )%>>IMC</option>
+		  				<option value='VMC' <%=(@flight_occurence.flight_condition == 'VMC' ? 'selected' : '' )%>>VMC</option>
 			    	</select>
 			    </div>
 			    <div class="span4">
 			    	<label><b>Time Of Day</b></label>
 			    	<select id='time_of_day' class="input-block-level input-large">
-			    		<option value='' selected>select option</option>
-			    		<option value='None'>None</option>
-		  				<option value='Day'>Day</option>
-		  				<option value='Into Sun'>Into Sun</option>
-		  				<option value='Night'>Night</option>
-		  				<option value='Out of Sun'>Out of Sun</option>
-		  				<option value='Twilight'>Twilight</option>
+			    		<option value=''>select option</option>
+			    		<option value='None' <%=(@flight_occurence.time_of_day == 'None' ? 'selected' : '' )%>>None</option>
+		  				<option value='Day' <%=(@flight_occurence.time_of_day == 'Day' ? 'selected' : '' )%>>Day</option>
+		  				<option value='Into Sun' <%=(@flight_occurence.time_of_day == 'Into Sun' ? 'selected' : '' )%>>Into Sun</option>
+		  				<option value='Night' <%=(@flight_occurence.time_of_day == 'Night' ? 'selected' : '' )%>>Night</option>
+		  				<option value='Out of Sun' <%=(@flight_occurence.time_of_day == 'Out of Sun' ? 'selected' : '' )%>>Out of Sun</option>
+		  				<option value='Twilight' <%=(@flight_occurence.time_of_day == 'Twilight' ? 'selected' : '' )%>>Twilight</option>
 			    	</select>
 			    </div>
 			    <div class="span4">
 			    	<label><b>Other (describe)</b></label>
-			    	<input type="text" id="other_describe" class="input-block-level input-large">
+			    	<input type="text" id="other_describe" class="input-block-level input-large" value="<%=@flight_occurence.other_describe%>">
 			    </div>	
 		    </div>
 	    </div>
@@ -419,15 +422,15 @@
 	    <div class="row-fluid">
 		    <div class="span4">
 		    	<label><b>Altitude (ASL/QNH)</b></label>
-		    	<input type="text" id="altitude" class="input-block-level input-large">
+		    	<input type="text" id="altitude" class="input-block-level input-large" value="<%=@flight_occurence.altitude%>">
 		    </div>
 		    <div class="span4">
 		    	<label><b>Height (AGL/QFE)</b></label>
-		    	<input type="text" id="height" class="input-block-level input-large">
+		    	<input type="text" id="height" class="input-block-level input-large" value="<%=@flight_occurence.height%>">
 		    </div>
 		    <div class="span4">
 		    	<label><b>Flight Level (FL050)</b></label>
-		    	<input type="text" id="flight_level" class="input-block-level input-large">
+		    	<input type="text" id="flight_level" class="input-block-level input-large" value="<%=@flight_occurence.flight_level%>">
 		    </div>
 	    </div>
 	  </div>
@@ -440,38 +443,39 @@
 	    <div class="row-fluid">
 		    <div class="span4">
 		    	<label><b>Precipitation</b></label>
-		    	<input type="text" id="precipitation" class="input-block-level input-large">
+		    	<input type="text" id="precipitation" class="input-block-level input-large" value="<%=@flight_occurence.precipitation%>">
 		    </div>
 		    <div class="span4">
 		    	<label><b>Icing</b></label>
-		    	<input type="text" id="icing" class="input-block-level input-large">
+		    	<input type="text" id="icing" class="input-block-level input-large" value="<%=@flight_occurence.icing%>">
 		    </div>
 		    <div class="span4">
 		    	<label><b>OAT°C</b></label>
-		    	<input type="text" id="oat" class="input-block-level input-large">
+		    	<input type="text" id="oat" class="input-block-level input-large" value="<%=@flight_occurence.oat%>">
 		    </div>
 	    </div>
 	    <div class="row-fluid">
 		    <div class="span2">
 		    	<label><b>Visibility</b></label>
-		    	<input type="text" id="visibility_distance" class="input-block-level input-large">
+		    	<input type="text" id="visibility" class="input-block-level input-large" value="<%=@flight_occurence.visibility_distance[0, @flight_occurence.visibility_distance.length - 3] unless @flight_occurence.visibility_distance.blank?%>">
 		    </div>
+		    <% @distance = @flight_occurence.visibility_distance[@flight_occurence.visibility_distance.length - 2, @flight_occurence.visibility_distance.length] unless @flight_occurence.visibility_distance.blank? %>
 		    <div class="span1">
 		    	<label><b>Distance</b></label>
 		        <select id='distance' class="form-control input-sm  no_margin">
-		    		<option value='KM' selected>KM</option>
-	  				<option value='NM'>NM</option>
+		    		<option value='KM' <%=(@distance == 'KM' ? 'selected' : '' )%>>KM</option>
+	  				<option value='NM' <%=(@distance == 'NM' ? 'selected' : '' )%>>NM</option>
 	  			</select> 		
 		    </div>
 		    <div class="span1"></div>
 
 		    <div class="span4" style="margin-right: 5">
 		    	<label><b>TAF</b></label>
-		    	<input type="text" id="taf" class="input-block-level input-large">
+		    	<input type="text" id="taf" class="input-block-level input-large" value="<%=@flight_occurence.taf%>">
 		    </div>
 		    <div class="span4">
 		    	<label><b>METAR</b></label>
-		    	<input type="text" id="metar" class="input-block-level input-large">
+		    	<input type="text" id="metar" class="input-block-level input-large" value="<%=@flight_occurence.metar%>">
 		    </div>
 	    </div>
 	  </div>
@@ -485,42 +489,42 @@
 		    <div class="span6">
 		    	<label><b><font color='#FF4000'>Number of Passengers *</b></font></label>
 		    	<select id='number_of_passengers' class="input-block-level input-large">
-		    		<option value='' selected>select option</option>
-		    		<option value='1'>1</option>
-	  				<option value='2'>2</option>
-	  				<option value='3'>3</option>
-	  				<option value='4'>4</option>
-	  				<option value='5'>5</option>
-	  				<option value='6'>6</option>
-	  				<option value='7'>7</option>
-	  				<option value='8'>8</option>
-	  				<option value='9'>9</option>
-	  				<option value='10'>10</option>
-	  				<option value='11'>11</option>
-	  				<option value='12'>12</option>
+		    		<option value=''>select option</option>
+		    		<option value='1' <%=(@flight_occurence.number_of_passengers == '1' ? 'selected' : '' )%>>1</option>
+	  				<option value='2' <%=(@flight_occurence.number_of_passengers == '2' ? 'selected' : '' )%>>2</option>
+	  				<option value='3' <%=(@flight_occurence.number_of_passengers == '3' ? 'selected' : '' )%>>3</option>
+	  				<option value='4' <%=(@flight_occurence.number_of_passengers == '4' ? 'selected' : '' )%>>4</option>
+	  				<option value='5' <%=(@flight_occurence.number_of_passengers == '5' ? 'selected' : '' )%>>5</option>
+	  				<option value='6' <%=(@flight_occurence.number_of_passengers == '6' ? 'selected' : '' )%>>6</option>
+	  				<option value='7' <%=(@flight_occurence.number_of_passengers == '7' ? 'selected' : '' )%>>7</option>
+	  				<option value='8' <%=(@flight_occurence.number_of_passengers == '8' ? 'selected' : '' )%>>8</option>
+	  				<option value='9' <%=(@flight_occurence.number_of_passengers == '9' ? 'selected' : '' )%>>9</option>
+	  				<option value='10' <%=(@flight_occurence.number_of_passengers == '10' ? 'selected' : '' )%>>10</option>
+	  				<option value='11' <%=(@flight_occurence.number_of_passengers == '11' ? 'selected' : '' )%>>11</option>
+	  				<option value='12' <%=(@flight_occurence.number_of_passengers == '12' ? 'selected' : '' )%>>12</option>
 		    	</select>
 		    </div>
 		    <div class="span6">
 		    	<label><b>Is it likely that the customer/passengers have noticed the occurrence ?</b></label>
 		    	<select id='have_noticed' class="input-block-level input-large">
-		    		<option value='' selected>select option</option>
-		    		<option value='yes'>Yes</option>
-	  				<option value='no'>No</option>
+		    		<option value=''>select option</option>
+		    		<option value='yes' <%=(@flight_occurence.have_noticed == 'yes' ? 'selected' : '' )%>>Yes</option>
+	  				<option value='no' <%=(@flight_occurence.have_noticed == 'no' ? 'selected' : '' )%>>No</option>
 		  		</select>
 		    </div>
 		    <div class="row-fluid">
 			    <div class="span6">
 			    	<label><b>Other</b></label>
-			    	<input type="text" id="other_info" class="input-block-level input-large">
+			    	<input type="text" id="other_info" class="input-block-level input-large" value="<%=@flight_occurence.other_info%>">
 			    </div>
 			    <div class="span6">
 			    	<label><b>If yes, who did you inform ?</b></label>
 			    	<select id='inform_who' class="input-block-level input-large">
-			    		<option value='' selected>select option</option>
-			    		<option value='none'>None</option>
-		  				<option value='ATC/RFTS'>ATC/RFTS</option>
-		  				<option value='HLO'>HLO</option>
-		  				<option value='Other'>Other</option>
+			    		<option value=''>select option</option>
+			    		<option value='none' <%=(@flight_occurence.inform_who == 'none' ? 'selected' : '' )%>>None</option>
+		  				<option value='ATC/RFTS' <%=(@flight_occurence.inform_who == 'ATC/RFTS' ? 'selected' : '' )%>>ATC/RFTS</option>
+		  				<option value='HLO' <%=(@flight_occurence.inform_who == 'HLO' ? 'selected' : '' )%>>HLO</option>
+		  				<option value='Other' <%=(@flight_occurence.inform_who == 'Other' ? 'selected' : '' )%>>Other</option>
 	  				</select>
 			    </div>
 			 </div>
@@ -528,7 +532,7 @@
 	  </div><!-- information customers -->
 	  <div class="row-fluid">
 	    <div class="span1" style="background-color: #FAFAFA;margin-bottom: 10px;">
-	      <button id='save_for' class="btn btn-primary" type="button">Save</button>
+	      <button id='update_for' class="btn btn-primary" type="button">Update</button>
 	    </div>
 	    <div class="span1" style="background-color: #FAFAFA;margin-left: 0px;">
 	      <button id='cancel_for' class="btn btn-primary" type="button">Cancel</button>
@@ -537,7 +541,7 @@
       <!-- end row span 12 -->
 	</div><!--/span-->
   </div><!--/row-->
-  
+ <%end%>
 <script type="text/javascript">
 	//date picker
 	var dt = new Date();
@@ -545,9 +549,14 @@
 	var month = dt.getMonth()+1;
 	var day = dt.getDate();
 	var today =  (day<10 ? '0' : '') + day + '/' + (month<10 ? '0' : '') + month + '/' + dt.getFullYear();
-	$('#local_time').val(time);
-	$('#occurence_date').val(today);
-	$('#date_report').val(today);
+	
+	$('#date_reported').datepicker({
+	 	format: "dd/mm/yyyy",
+		todayBtn: "linked",
+		calendarWeeks: true,
+		autoclose: true,
+		todayHighlight: true
+	});
 	$('#occurence_date').datepicker({
 	 	format: "dd/mm/yyyy",
 		todayBtn: "linked",
@@ -555,7 +564,7 @@
 		autoclose: true,
 		todayHighlight: true
 	});
-	$('#date_reported').datepicker({
+	$('#date_report').datepicker({
 	 	format: "dd/mm/yyyy",
 		todayBtn: "linked",
 		calendarWeeks: true,
@@ -564,7 +573,7 @@
 	});
 	//end date picker
 	
-	$('#save_for').click(function(e) {
+	$('#update_for').click(function(e) {
 	 //alert($('#correction').val());
 	 if ($('#ac_type').val() != '' 
 	 		&& $('#ac_registration').val() != '' && $('#title_of_occurence').val() 
@@ -575,8 +584,9 @@
 		$.ajax
          ({
          	type: 'POST',
-         	url: '/report/new_flight_occurence',
+         	url: '/report/edit_flight_occurence',
          	data: {
+         		id: $('#id').val(),
          		fo_no: $('#fo_no').val(),
          		dca_reportable_incident: $('#dca_reportable_incident').val(),
          		status_report: $('#status_report').val(),
@@ -630,7 +640,7 @@
          		precipitation: $('#precipitation').val(),
          		icing: $('#icing').val(),
          		oat: $('#oat').val(),
-         		visibility_distance: $('#visibility').val() + ' ' +  $('#distance').val(),
+         		visibility_distance: $('#visibility').val() + ' ' + $('#distance').val(),
          		distance: $('#distance').val(),
          		taf: $('#taf').val(),
          		metar: $('#metar').val(),
@@ -646,8 +656,8 @@
             success: function (data){
             	//window.location = "/admin/index";
             	//$('#createFOreport').load('/report/create_flight_occurence');
-				$('#modalContent').html('Completed.');
-				$("#myModal").modal('show');	
+				//$('#modalContent').html('Completed.');
+				//$("#myModal").modal('show');	
 				window.location.href = '/report/show_flight_occurence';
             },
             error: function (e){

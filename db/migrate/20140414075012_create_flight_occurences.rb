@@ -31,7 +31,6 @@ class CreateFlightOccurences < ActiveRecord::Migration
       t.text   :correction
       t.text   :root_cause
       t.text   :preventive_plan
-      #flight information
       #regular authority
       t.string :regulatory_authorities
       t.date   :date_reported

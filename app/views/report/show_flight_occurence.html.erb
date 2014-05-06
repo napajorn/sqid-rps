@@ -1,0 +1,181 @@
+<%debug(@flight_occurence)%>
+<style>
+.stitched{
+ padding: 3px;
+ margin: 1px;
+ background: #FEFCFF;
+
+ /*font-size: 21px;*/
+ /*font-weight: bold;*/
+ line-height: 1.3em;
+ border: 2px dashed #fff;
+ border-radius: 5px;
+ /*box-shadow: 0 0 0 4px #ff0030, 2px 1px 3px 4px rgba(10, 10, 0, 0.5);
+ text-shadow: -1px -1px #aa3030;*/
+ /*font-weight: normal;*/
+}
+</style>
+<div id='listFOR'>
+<div class="input-append">
+  <input type="text" class="input-block-level input-large" id="search-for" placeholder="" value="<%=@search unless @search.blank?%>">
+  <button id='search_user' class="btn" type="button"><i class="icon-search"></i> search</button>
+</div>
+
+<% unless @flight_occurence.blank? %>
+	<% @flight_occurence.each do |flight| %>
+	<!--
+		<div class="row-fluid">
+		    <div class="span12 stitched" style="color: #DF3A01;background-color: #FFF5EE">
+		    	<label><b>Altitude information (please fill in ONE or if require more)</b></label>
+		    </div>
+		    <div class="row-fluid">
+			    <div class="span4">
+			    	<label><b>Altitude (ASL/QNH)</b></label>
+			    	<input type="text" id="altitude" class="input-block-level input-large">
+			    </div>
+			    <div class="span4">
+			    	<label><b>Height (AGL/QFE)</b></label>
+			    	<input type="text" id="height" class="input-block-level input-large">
+			    </div>
+			    <div class="span4">
+			    	<label><b>Flight Level (FL050)</b></label>
+			    	<input type="text" id="flight_level" class="input-block-level input-large">
+			    </div>
+		    </div>
+	  	</div>
+	-->
+		<div class="row-fluid stitched">
+		    <div class="span12" style="background-color: #FAFAFA;">
+		      <div class="media">
+				<img class="pull-left" src="../assets/rps-logo-01.png" alt="..." width="64" height="64">
+		  		<div class="media-body">
+		   	 		<div>
+		   	 			<h6 class="label">
+		   	 			<i class="glyphicon glyphicon-time icon-white"></i> <%=flight.created_at.strftime("%d-%b-%Y %H:%M %p")%>
+		   	 			</h6>
+		   	 			<h6 class="label" style="background-color: #0174DF">
+		   	 			<i class="glyphicon glyphicon-link icon-white"></i> Sub Report
+		   	 			</h6>
+		   	 			<h6 class="label" style="background-color: #0174DF">
+		   	 			<i class="glyphicon glyphicon-plane icon-white"></i> <%=flight.ac_type%> : <%=flight.ac_registration%> | <%=flight.ata_chapter%> : <%=flight.ata_section%>
+		   	 			</h6>
+		   	 			<h6 class="label" style="background-color: #0174DF">
+		   	 			<i class="glyphicon glyphicon-user icon-white"></i>P <%=flight.number_of_passengers%> 
+		   	 			</h6>
+		   	 		</div>
+					<div>
+						<!--
+		   	 			<table class='table-bordered' width="100%" style='font-size: 12px;'>
+		   	 				<tr>
+		   	 					<td width="10%"><label style='margin: 0;'><b>Occurence Date:</b></label>04/05/2014 <%=flight.occurence_date%></td>
+		   	 					<td width="20%"><label style='margin: 0;'><b>Report Manager:</b></label>Napajorn.w@gmail.com <%=flight.report_manager%></td>
+		   	 					<td width="20%"><label style='margin: 0;'><b>Delegate:</b></label>Napajorn Wattanagul <%=flight.delegate%></td>
+		   	 					<td width="5%"><label style='margin: 0;'><b>Status:</b></label>Waiting <%=flight.status_report%></td>
+		   	 					<td width="15%">
+		   	 						<button id='link' class="btn btn-mini btn-default" type="button"><i class="glyphicon glyphicon-link"></i> link</button>
+		   	 						<button id='edit' class="btn btn-mini btn-primary" type="button"><i class="icon-edit"></i> edit</button>
+									<button id='remove' class="btn btn-mini btn-danger" type="button"><i class="icon-remove-sign"></i> remove</button>
+								</td>
+		   	 				</tr>
+		   	 			</table>
+		   	 			-->
+		   	 			<table class='table' width="100%">
+		   	 				<tr>
+		   	 					<td rowspan='3' width="60%">
+		   	 						<div class="panel panel-default" style="margin: 0;">
+									  <div class="panel-heading">
+									    <h6 class="panel-title" style="font-size: 14px;height: 10px;"><%=flight.title_of_occurence%></h6>
+									  </div>
+									  <div class="panel-body" style="font-size: 12px;overflow-y: auto;height: 70px;">
+									  	<%=flight.description_occurence%>
+									  </div>
+									</div>
+		   	 					</td>
+		   	 					<td>
+		   	 						<label style='margin: 0;'><b>Occurence Date: </b></label>
+		   	 					</td>
+		   	 					<td><%=flight.occurence_date.try(:strftime, "%d/%m%Y") unless flight.occurence_date.blank? %></td>
+		   	 					<td>
+		   	 						<label style='margin: 0;'><b>Status: </b></label>
+		   	 					</td>
+		   	 					<td><%=flight.status_report%></td>
+		   	 				</tr>
+		   	 				<tr>
+		   	 					<td><label style='margin: 0;'>
+		   	 						<b>Report Manager: </b></label>
+		   	 					</td>
+		   	 					<td>
+		   	 						<%=flight.report_manager%>
+		   	 					</td>
+		   	 					<td><label style='margin: 0;'><b>Delegate: </b></label></td>
+		   	 					<td><%=flight.delegate%></td>
+		   	 				</tr>
+		   	 				<tr>
+		   	 					<td colspan='4'>
+		   	 						<button id='link' class="btn btn-mini btn-default" type="button"><i class="glyphicon glyphicon-link"></i> link</button>
+		   	 						<button id='edit' onclick="editFlightOccurence('<%=flight.id%>');" class="btn btn-mini btn-primary" type="button"><i class="icon-edit"></i> edit</button>
+									<button id='remove' onclick="removeFlightOccurence('<%=flight.id%>');" class="btn btn-mini btn-danger" type="button"><i class="icon-remove-sign"></i> remove</button>
+								</td>
+		   	 				</tr>
+		   	 			</table>
+		   	 		</div>
+		  		</div>
+			 </div>
+		   </div>
+		</div>
+	<% end %>
+<% else %>
+ <div class="row-fluid">
+    <div class="span12" style="background-color: #FAFAFA;margin-bottom: 10px;">
+      <div class="media">
+		<img class="pull-left img-rounded" src="../assets/rps-logo-01.png" alt="..." width="64" height="64">
+  		<div class="media-body">
+   	 		<h4 class="media-heading">No Flight Occurence Report</h4>
+  		</div>
+	  </div>
+	 </div>
+ </div>
+<%end%>
+</div>
+<script type="text/javascript">
+function removeFlightOccurence(id){
+	if (confirm("Are you sure?")) {
+		$.ajax
+	     ({
+	     	type: 'POST',
+	     	url: '/report/destroy_flight_occurence',
+	     	data: {id: id},
+	        beforeSend: function (){
+
+	        	$('#listFOR').html('<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>');
+	        },
+	        success: function (){
+	        	window.location = "/report/show_flight_occurence";
+	        	//alert("User was successfully deleted.");
+	        },
+	        error: function (){
+	        	alert("Delete operate was not successful!!");	
+	        }
+	     });
+	}
+	return false;
+}
+function editFlightOccurence(id) {
+     	$.ajax
+		     ({
+		     	type: 'POST',
+		     	url: '/report/edit_flight_occurence',
+		     	data: {id: id},
+		        beforeSend: function (){
+		        	$('#listFOR').html('<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>');
+			    },
+		        success: function (){
+		        	$('#listFOR').load('/report/edit_flight_occurence/'+id);
+		        },
+		        error: function (){
+		        	alert("Cannot load form update!!");	
+		        }
+		     });
+		return false;
+     }
+</script>

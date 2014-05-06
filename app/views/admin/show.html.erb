@@ -1,12 +1,19 @@
 <% debug(@user) %>
 
-<div class="form-search input-append">
-  <input class="input-xlarge" id="search-user" placeholder="firstname or lastname..." type="text" value="<%=@search unless @search.blank?%>">
+<div class="input-append">
+  <input type="text" class="input-block-level input-large" id="search-user" placeholder="firstname or lastname..." value="<%=@search unless @search.blank?%>">
   <button id='search_user' class="btn" type="button"><i class="icon-search"></i> search</button>
   <button id="add_user" class="btn btn-primary btn-lg" type="button">add user</button>
 </div>
-
-
+<!--
+<form class="navbar-form pull-left form-search">
+<div class="input-append">
+    <input data-provide="typeahead" data-items="4"  type="text" 
+       class="span2 search-query">
+    <button class="btn">Search</button>
+</div>
+</form>
+-->
 <table class="table table-condensed table-hover table-bordered table-striped">
   <thead>
     <tr>
@@ -19,7 +26,6 @@
       <th>PILOT</th>
       <th>NOTE</th>
       <th>ACTION</th>
-      
     </tr>
   </thead>
   <tbody>

@@ -51,90 +51,8 @@
 <!-- modal -->
 
 
-<div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-	      <a class="brand" href="#">RPS-REPORT</a>
-          <div class="nav-collapse collapse">
- 
-            <ul class="nav nav-pills">
-             <!--home menu -->
-             <li><a href="/main"><i class="icon-home icon-white"></i> HOME</a></li>
-             <!--end home menu -->
-             <!--reactive menu -->
-             <li class="dropdown" id="reactive-menu"> 
-	              <a id="reactive_menu" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
-	              	<i class="icon-folder-open icon-white"></i> REACTIVE 
-	              	<b class="caret"></b>
-	              </a>
-	              <ul class="dropdown-menu">
-	      				<li><a href="#"><i class="icon-file"></i> AOG  - Aircraft on ground</a></li>
-	      				<li><a href="#"><i class="icon-file"></i> CF   - Customer feedback</a></li>
-	      				<li><a href="/report/flight_occurence"><i class="icon-file"></i> FO   - Flight occurence</a></li>
-	      				<li><a href="#"><i class="icon-file"></i> GO   - Ground occurence</a></li>
-	      				<li><a href="#"><i class="icon-file"></i> HESS - Health, Environment, Saftty & Security</a></li>
-	      				<li><a href="#"><i class="icon-file"></i> MRO occurence</a></li>
-	    			</ul>
-  			  </li>
-  			  <!--end reactive menu -->
-				
-              <!--proactive menu -->
-              <li class="dropdown">
-	              <a id="proactive_menu" data-toggle="dropdown" class="dropdown-toggle" data-target="#">
-	              	<i class="icon-folder-open icon-white"></i> PROACTIVE 
-	              	<b class="caret"></b>
-	              </a>
-	              <ul class="dropdown-menu">
-	      				<li><a href="#"><i class="icon-file"></i> HI  - Hazard Identification</a></li>
-	      				<li><a href="#"><i class="icon-file"></i> NC  - Non-Conformance</a></li>
-	      				<li><a href="#"><i class="icon-file"></i> Request for document change / procedure change</a></li>
-	    			</ul>
-  			  </li>
-              <!--end proactive menu -->
-              
-              <li class="dropdown" id="other-menu"> 
-	              <a id="other_menu" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
-	              	<i class="icon-folder-open icon-white"></i> OTHER 
-	              	<b class="caret"></b>
-	              </a>
-	              <ul class="dropdown-menu">
-	      				<li><a href="#"><i class="icon-file"></i> Anonymous Report</a></li>
-	      				<li><a href="#"><i class="icon-file"></i> Audit Report</a></li>
-	      				<li><a href="#"><i class="icon-file"></i> Confidencetial Report</a></li>
-	      				<li><a href="#"><i class="icon-file"></i> Corrective / Preventative Report</a></li>
-	      				<li><a href="#"><i class="icon-file"></i> Indexed Document</a></li>
-	      				<li><a href="#"><i class="icon-file"></i> Investigation</a></li>
-	      				<li><a href="#"><i class="icon-file"></i> Meeting Record</a></li>
-	      				<li><a href="#"><i class="icon-file"></i> Weekly SITREP</a></li>
-	    			</ul>
-  			  </li>
-              <!--admin menu -->
-              <li class="dropdown">
-	              	<a id="admin_menu" class="dropdown-toggle" data-toggle="dropdown" data-target="#">
-	              		<i class="icon-wrench icon-white"></i> ADMIN 
-	              		<b class="caret"></b>
-	              	</a>
-	    			<ul class="dropdown-menu">
-	      				<li><a href="/admin"><i class="icon-user"></i> Users</a></li>
-	    			</ul>
-  			  </li>
-  			  <!--end admin menu -->
-  			  <li class="pull-right">
-	  			  <!--<p class="navbar-text pull-right"></p>-->
-	  			  <p class="navbar-text pull-right">
-	              	<i class="icon-user icon-white"></i> | Logged in as 
-	              	<a href="#" class="navbar-link"><%=session[:username]%></a>
-	          	  </p>
-	          </li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div><!--/.nav-container-fluid -->
-      </div><!--/.navbar-inner -->
-    </div><!--/.navbar navbar-inverse navbar-fixed-top -->
-
     <div class="container-fluid">
       <div class="row-fluid">
-        
         <div class="span12">
         	<!--/row span 12 -->
 		   <div class="row-fluid">
@@ -194,8 +112,8 @@
 			      <li><a href="#"><i class="i"></i> Make admin</a></li>
 			    </ul>
 			  </div><!--button group -->
-		    </div><!--/span -->
-      	  </div><!--/row -->
+		    <!--</div>--><!--/span -->
+      	  <!-- </div>--><!--/row -->
           <!-- end row span 12 [9,3] -->
           
         </div><!--/span-->

@@ -1,3 +1,19 @@
+<script type="text/javascript">
+	$.ajax({
+		type: 'POST',
+	    url: '/report/create_flight_occurence',
+	    beforeSend: function (){
+	       $('#listFlightOccurence').hide();
+	       $('#createFOreport').html('<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>');
+		},
+	    success: function (){
+	       $('#createFOreport').load('/report/create_flight_occurence');
+	    },
+	    error: function (){
+	       alert("Cannot load form update!!");	
+	    }
+	 });
+</script>
 
 
 <div class="container-fluid">
@@ -373,21 +389,6 @@
 	  chart3Options = jQuery.extend(true, {}, options, chart3Options);
 	  //var chart3 = new Highcharts.Chart(chart3Options);
 	  //end the chart 3
-	  
-	  $.ajax({
-		type: 'POST',
-	    url: '/report/create_flight_occurence',
-	    beforeSend: function (){
-	       $('#listFlightOccurence').hide();
-	       $('#createFOreport').html('<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>');
-		},
-	    success: function (){
-	       $('#createFOreport').load('/report/create_flight_occurence');
-	    },
-	    error: function (){
-	       alert("Cannot load form update!!");	
-	    }
-	 });
 });
 
 

@@ -30,7 +30,7 @@
 	    <div class="span4" style="background-color: #FAFAFA">
 	    	<label><b>DCA Reportable Incident</b></label>
 	    	<select id='dca_reportable_incident' class="input-block-level input-large">
-	    		<option value='none' <%=(@flight_occurence.dca_reportable_incident == 'none' ? 'selected' : '' )%>>select option</option>
+	    		<option value=''>select option</option>
   				<option value='yes' <%=(@flight_occurence.dca_reportable_incident == 'yes' ? 'selected' : '' )%>>Yes</option>
   				<option value='no' <%=(@flight_occurence.dca_reportable_incident == 'no' ? 'selected' : '' )%>>No</option>
 	    	</select>
@@ -39,11 +39,11 @@
 	    	<label><b>Status Report</b></label>
 	    	<select id='status_report' class="input-block-level input-large">
 	    		<option value=''>select option</option>
-  				<option value='submitted' <%=(@flight_occurence.status_report == 'SUBMIITTED' ? 'selected' : '' )%>>Submitted</option>
-  				<option value='open' <%=(@flight_occurence.status_report == 'OPEN' ? 'selected' : '' )%>>Open</option>
-  				<option value='waiting' <%=(@flight_occurence.status_report == 'WAITING' ? 'selected' : '' )%>>Waiting</option>
-  				<option value='closed' <%=(@flight_occurence.status_report == 'CLOASED' ? 'selected' : '' )%>>Closed</option>
-  				<option value='reopened' <%=(@flight_occurence.status_report == 'REOPENED' ? 'selected' : '' )%>>Reopened</option>
+  				<option value='submitted' <%=(@flight_occurence.status_report == 'submitted' ? 'selected' : '' )%>>Submitted</option>
+  				<option value='open' <%=(@flight_occurence.status_report == 'open' ? 'selected' : '' )%>>Open</option>
+  				<option value='waiting' <%=(@flight_occurence.status_report == 'waiting' ? 'selected' : '' )%>>Waiting</option>
+  				<option value='closed' <%=(@flight_occurence.status_report == 'closed' ? 'selected' : '' )%>>Closed</option>
+  				<option value='reopened' <%=(@flight_occurence.status_report == 'reopened' ? 'selected' : '' )%>>Reopened</option>
 	    	</select>
 	    </div>
 	  </div>

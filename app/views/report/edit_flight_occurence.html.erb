@@ -39,11 +39,11 @@
 	    	<label><b>Status Report</b></label>
 	    	<select id='status_report' class="input-block-level input-large">
 	    		<option value=''>select option</option>
-  				<option value='submitted' <%=(@flight_occurence.status_report == 'submitted' ? 'selected' : '' )%>>Submitted</option>
-  				<option value='open' <%=(@flight_occurence.status_report == 'open' ? 'selected' : '' )%>>Open</option>
-  				<option value='waiting' <%=(@flight_occurence.status_report == 'waiting' ? 'selected' : '' )%>>Waiting</option>
-  				<option value='closed' <%=(@flight_occurence.status_report == 'closed' ? 'selected' : '' )%>>Closed</option>
-  				<option value='reopened' <%=(@flight_occurence.status_report == 'reopened' ? 'selected' : '' )%>>Reopened</option>
+  				<option value='submitted' <%=(@flight_occurence.status_report ==  'SUBMITTED' ? 'selected' : '' )%>>Submitted</option>
+  				<option value='open' <%=(@flight_occurence.status_report == 'OPEN' ? 'selected' : '' )%>>Open</option>
+  				<option value='waiting' <%=(@flight_occurence.status_report == 'WAITING' ? 'selected' : '' )%>>Waiting</option>
+  				<option value='closed' <%=(@flight_occurence.status_report == 'CLOSED' ? 'selected' : '' )%>>Closed</option>
+  				<option value='reopened' <%=(@flight_occurence.status_report == 'REOPENED' ? 'selected' : '' )%>>Reopened</option>
 	    	</select>
 	    </div>
 	  </div>

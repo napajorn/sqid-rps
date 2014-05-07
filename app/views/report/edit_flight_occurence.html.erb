@@ -38,7 +38,7 @@
 	    <div class="span4" style="background-color: #FAFAFA">
 	    	<label><b>Status Report</b></label>
 	    	<select id='status_report' class="input-block-level input-large">
-	    		<option value=''>select option</option>
+	    		<option value=''>select option <%=(@flight_occurence.status_report%></option>
   				<option value='submitted' <%=(@flight_occurence.status_report ==  'SUBMITTED' ? 'selected' : '' )%>>Submitted</option>
   				<option value='open' <%=(@flight_occurence.status_report == 'OPEN' ? 'selected' : '' )%>>Open</option>
   				<option value='waiting' <%=(@flight_occurence.status_report == 'WAITING' ? 'selected' : '' )%>>Waiting</option>
